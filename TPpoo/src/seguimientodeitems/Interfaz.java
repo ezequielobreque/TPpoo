@@ -138,7 +138,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_campoTextoItemActionPerformed
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-        // TODO add your handling code here:
+        //// TODO add your handling code here:
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     /**
