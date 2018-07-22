@@ -7,6 +7,7 @@ package seguimientodeitems;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import seguimientodeitems.Control.Item;
 
 /**
@@ -41,6 +42,7 @@ public class Interfaz extends javax.swing.JFrame {
         ListaDeItems = new javax.swing.JList<>();
         botonBorrar = new javax.swing.JButton();
         campoTextoItem = new javax.swing.JTextField();
+        ContadorDeLista = new javax.swing.JLabel();
         JlabelFondo1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -72,6 +74,8 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(BotonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
         ListaDeItems.setModel(modelo);
+        ListaDeItems.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListaDeItems.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(ListaDeItems);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
@@ -91,6 +95,9 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
         jPanel1.add(campoTextoItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 260, -1));
+
+        ContadorDeLista.setText("Cantidad de la lista");
+        jPanel1.add(ContadorDeLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
 
         JlabelFondo1.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ar/edu/untdf/alumnos/app/view/Nueva Carpeta/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
@@ -131,6 +138,7 @@ public class Interfaz extends javax.swing.JFrame {
         campoTextoItem.setText("");
         campoTextoItem.requestFocus();
         ListaDeItems.setSelectedIndex(0);
+        ContadorDeLista.setText(String.valueOf(modelo.getSize()));
     }//GEN-LAST:event_BotonAgregarActionPerformed
 
     private void campoTextoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoItemActionPerformed
@@ -138,7 +146,12 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_campoTextoItemActionPerformed
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-        //// TODO add your handling code here:
+if(modelo.getSize()>0)
+{int n =ListaDeItems.getSelectedIndex();
+modelo.removeElementAt(n);
+ListaDeItems.setSelectedIndex(0);
+}
+ContadorDeLista.setText(String.valueOf(modelo.getSize()));
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     /**
@@ -178,6 +191,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregar;
+    private javax.swing.JLabel ContadorDeLista;
     private javax.swing.JLabel JlabelFondo;
     private javax.swing.JLabel JlabelFondo1;
     private javax.swing.JList<String> ListaDeItems;
