@@ -174,7 +174,7 @@ public class Interfaz extends javax.swing.JFrame {
         ListaDeEstadosTabla.setRequestFocusEnabled(false);
         jScrollPane3.setViewportView(ListaDeEstadosTabla);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 220, -1));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 220, -1));
 
         botonBorrarEstado.setText("Borrar");
         botonBorrarEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +193,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel3.add(campoTextoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, -1));
 
         ContadorDeEstados.setText("Cantidad de la lista");
-        jPanel3.add(ContadorDeEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 220, -1));
+        jPanel3.add(ContadorDeEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
 
         jButton2.setText("posibles Siguientes estados");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
