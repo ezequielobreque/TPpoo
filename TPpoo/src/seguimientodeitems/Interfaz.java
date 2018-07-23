@@ -27,6 +27,7 @@ public class Interfaz extends javax.swing.JFrame {
      */
     public Interfaz() {
         initComponents();this.setLocationRelativeTo(null);
+                ;
     }
 
     /**
@@ -63,16 +64,16 @@ public class Interfaz extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         NombreDelItem = new javax.swing.JLabel();
         campoTextoLider = new javax.swing.JTextField();
-        campoTextoMiembros = new javax.swing.JTextField();
+        AtrasEstados = new javax.swing.JButton();
         JlabelFondo3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        BotonAgregarEstado1 = new javax.swing.JButton();
+        BotonAgregarEstadosSiguientes = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         modeloEstadosSiguientes = new DefaultListModel();
         ListaDeEstadosSiguientesTabla = new javax.swing.JList<>();
-        botonBorrarEstado1 = new javax.swing.JButton();
-        campoTextoEstado1 = new javax.swing.JTextField();
-        ContadorDeEstados1 = new javax.swing.JLabel();
+        botonBorrarEstadosSiguientes = new javax.swing.JButton();
+        campoTextoEstadosSiguientes = new javax.swing.JTextField();
+        ContadorDeEstadosSiguientes = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         NombreDelEstado = new javax.swing.JLabel();
         JlabelFondo4 = new javax.swing.JLabel();
@@ -85,7 +86,7 @@ public class Interfaz extends javax.swing.JFrame {
         salir.setBackground(new java.awt.Color(51, 255, 255));
         salir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         salir.setForeground(new java.awt.Color(102, 255, 255));
-        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ar/edu/untdf/alumnos/app/view/Nueva Carpeta/icon (1).png"))); // NOI18N
+        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/icon (1).png"))); // NOI18N
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
@@ -101,7 +102,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(BotonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+        jPanel1.add(BotonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 20, 100, -1));
 
         ListaDeItemsTabla.setModel(modelo);
         ListaDeItemsTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -116,7 +117,7 @@ public class Interfaz extends javax.swing.JFrame {
                 botonBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 70, -1));
+        jPanel1.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 100, -1));
 
         campoTextoItem.setText("nombre del item");
         campoTextoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -129,16 +130,16 @@ public class Interfaz extends javax.swing.JFrame {
         ContadorDeLista.setText("Cantidad de la lista");
         jPanel1.add(ContadorDeLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Modificar Item");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
 
         JlabelFondo1.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ar/edu/untdf/alumnos/app/view/Nueva Carpeta/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
+        JlabelFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel1.add(JlabelFondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
 
         jTabbedPane1.addTab("Items", jPanel1);
@@ -166,7 +167,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonAgregarEstadoActionPerformed(evt);
             }
         });
-        jPanel3.add(BotonAgregarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+        jPanel3.add(BotonAgregarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 20, 170, -1));
 
         ListaDeEstadosTabla.setModel(modeloEstado);
         ListaDeEstadosTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -181,7 +182,7 @@ public class Interfaz extends javax.swing.JFrame {
                 botonBorrarEstadoActionPerformed(evt);
             }
         });
-        jPanel3.add(botonBorrarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 70, -1));
+        jPanel3.add(botonBorrarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 170, -1));
 
         campoTextoEstado.setText("nombre del Estado");
         campoTextoEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +201,7 @@ public class Interfaz extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 170, -1));
         jPanel3.add(NombreDelItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 130, -1));
 
         campoTextoLider.setText("LiderLegajo");
@@ -211,67 +212,67 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel3.add(campoTextoLider, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
 
-        campoTextoMiembros.setText("Miembros");
-        campoTextoMiembros.addActionListener(new java.awt.event.ActionListener() {
+        AtrasEstados.setText("atras");
+        AtrasEstados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoMiembrosActionPerformed(evt);
+                AtrasEstadosActionPerformed(evt);
             }
         });
-        jPanel3.add(campoTextoMiembros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 220, -1));
+        jPanel3.add(AtrasEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 170, -1));
 
         JlabelFondo3.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ar/edu/untdf/alumnos/app/view/Nueva Carpeta/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
+        JlabelFondo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel3.add(JlabelFondo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
 
         jTabbedPane1.addTab("Estados", jPanel3);
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BotonAgregarEstado1.setText("Agregar");
-        BotonAgregarEstado1.addActionListener(new java.awt.event.ActionListener() {
+        BotonAgregarEstadosSiguientes.setText("Agregar");
+        BotonAgregarEstadosSiguientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonAgregarEstado1ActionPerformed(evt);
+                BotonAgregarEstadosSiguientesActionPerformed(evt);
             }
         });
-        jPanel4.add(BotonAgregarEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+        jPanel4.add(BotonAgregarEstadosSiguientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
         ListaDeEstadosSiguientesTabla.setModel(modeloEstadosSiguientes);
         ListaDeEstadosSiguientesTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListaDeEstadosSiguientesTabla.setRequestFocusEnabled(false);
         jScrollPane4.setViewportView(ListaDeEstadosSiguientesTabla);
 
-        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
+        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 220, -1));
 
-        botonBorrarEstado1.setText("Borrar");
-        botonBorrarEstado1.addActionListener(new java.awt.event.ActionListener() {
+        botonBorrarEstadosSiguientes.setText("Borrar");
+        botonBorrarEstadosSiguientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBorrarEstado1ActionPerformed(evt);
+                botonBorrarEstadosSiguientesActionPerformed(evt);
             }
         });
-        jPanel4.add(botonBorrarEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 70, -1));
+        jPanel4.add(botonBorrarEstadosSiguientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 70, -1));
 
-        campoTextoEstado1.setText("nombre del Estado");
-        campoTextoEstado1.addActionListener(new java.awt.event.ActionListener() {
+        campoTextoEstadosSiguientes.setText("nombre del Estado");
+        campoTextoEstadosSiguientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoEstado1ActionPerformed(evt);
+                campoTextoEstadosSiguientesActionPerformed(evt);
             }
         });
-        jPanel4.add(campoTextoEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, -1));
+        jPanel4.add(campoTextoEstadosSiguientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, -1));
 
-        ContadorDeEstados1.setText("Cantidad de la lista");
-        jPanel4.add(ContadorDeEstados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
+        ContadorDeEstadosSiguientes.setText("Cantidad de la lista");
+        jPanel4.add(ContadorDeEstadosSiguientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
 
-        jButton3.setText("posibles Siguientes estados");
+        jButton3.setText("Asignar equipo");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
         jPanel4.add(NombreDelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 130, -1));
 
         JlabelFondo4.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ar/edu/untdf/alumnos/app/view/Nueva Carpeta/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
+        JlabelFondo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel4.add(JlabelFondo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
 
         jTabbedPane1.addTab("Sigientes", jPanel4);
@@ -279,7 +280,7 @@ public class Interfaz extends javax.swing.JFrame {
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         JlabelFondo.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ar/edu/untdf/alumnos/app/view/Nueva Carpeta/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
+        JlabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         getContentPane().add(JlabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
@@ -324,6 +325,8 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void BotonAgregarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarEstadoActionPerformed
         modeloEstado.addElement(campoTextoEstado.getText());
+         Estado nuevo =  new Estado(campoTextoEstado.getText());
+        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).agregarListaDeEstados(nuevo);
         campoTextoEstado.setText("");
         campoTextoEstado.requestFocus();
         ListaDeEstadosTabla.setSelectedIndex(0);
@@ -334,9 +337,10 @@ public class Interfaz extends javax.swing.JFrame {
     private void botonBorrarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarEstadoActionPerformed
       if(modeloEstado.getSize()>0)
         {int n =ListaDeEstadosTabla.getSelectedIndex();
-            modelo.removeElementAt(n);
+            modeloEstado.removeElementAt(n);
+            listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).borrarListaDeEstados(n);
             ListaDeEstadosTabla.setSelectedIndex(0);
-        }
+    }
         ContadorDeEstados.setText(String.valueOf(modeloEstado.getSize()));
         
     }//GEN-LAST:event_botonBorrarEstadoActionPerformed
@@ -349,30 +353,41 @@ public class Interfaz extends javax.swing.JFrame {
         
         jTabbedPane1.setSelectedIndex(2);
         NombreDelItem.setText(ListaDeItemsTabla.getSelectedValue());
-        
+        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getListaDeEstados().forEach((i) -> {
+            modeloEstado.addElement(i.getNombre()); 
+        });
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int n =ListaDeEstadosTabla.getSelectedIndex();
+        jTabbedPane1.setSelectedIndex(3);
+        NombreDelEstado.setText(ListaDeEstadosTabla.getSelectedValue());
+        
+        //int n =ListaDeEstadosTabla.getSelectedIndex();
         //listaDeEstados.get(n).AddSiguienteEstado();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void BotonAgregarEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarEstado1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonAgregarEstado1ActionPerformed
+    private void BotonAgregarEstadosSiguientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarEstadosSiguientesActionPerformed
+        modeloEstadosSiguientes.addElement(campoTextoEstadosSiguientes.getText());
+         Estado nuevo =  new Estado(campoTextoEstadosSiguientes.getText());
+        int n =ListaDeEstadosTabla.getSelectedIndex();
+        listaDeEstados.get(n).AddSiguienteEstado(nuevo);
+        campoTextoEstadosSiguientes.setText("");
+        campoTextoEstadosSiguientes.requestFocus();
+        ListaDeEstadosSiguientesTabla.setSelectedIndex(0);
+        ContadorDeEstadosSiguientes.setText(String.valueOf(modeloEstado.getSize()));
+     
+    }//GEN-LAST:event_BotonAgregarEstadosSiguientesActionPerformed
 
-    private void botonBorrarEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarEstado1ActionPerformed
+    private void botonBorrarEstadosSiguientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarEstadosSiguientesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonBorrarEstado1ActionPerformed
+    }//GEN-LAST:event_botonBorrarEstadosSiguientesActionPerformed
 
-    private void campoTextoEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoEstado1ActionPerformed
+    private void campoTextoEstadosSiguientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoEstadosSiguientesActionPerformed
         
-    }//GEN-LAST:event_campoTextoEstado1ActionPerformed
+    }//GEN-LAST:event_campoTextoEstadosSiguientesActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jTabbedPane1.setSelectedIndex(3);
-        NombreDelEstado.setText(ListaDeEstadosTabla.getSelectedValue());
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -380,9 +395,12 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTextoLiderActionPerformed
 
-    private void campoTextoMiembrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoMiembrosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoMiembrosActionPerformed
+    private void AtrasEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasEstadosActionPerformed
+            jTabbedPane1.setSelectedIndex(0);
+            modeloEstado.removeAllElements(); 
+            
+        
+    }//GEN-LAST:event_AtrasEstadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,11 +438,12 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AtrasEstados;
     private javax.swing.JButton BotonAgregar;
     private javax.swing.JButton BotonAgregarEstado;
-    private javax.swing.JButton BotonAgregarEstado1;
+    private javax.swing.JButton BotonAgregarEstadosSiguientes;
     private javax.swing.JLabel ContadorDeEstados;
-    private javax.swing.JLabel ContadorDeEstados1;
+    private javax.swing.JLabel ContadorDeEstadosSiguientes;
     private javax.swing.JLabel ContadorDeLista;
     private javax.swing.JLabel JlabelFondo;
     private javax.swing.JLabel JlabelFondo1;
@@ -440,12 +459,11 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel NombreDelItem;
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonBorrarEstado;
-    private javax.swing.JButton botonBorrarEstado1;
+    private javax.swing.JButton botonBorrarEstadosSiguientes;
     private javax.swing.JTextField campoTextoEstado;
-    private javax.swing.JTextField campoTextoEstado1;
+    private javax.swing.JTextField campoTextoEstadosSiguientes;
     private javax.swing.JTextField campoTextoItem;
     private javax.swing.JTextField campoTextoLider;
-    private javax.swing.JTextField campoTextoMiembros;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

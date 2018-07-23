@@ -19,6 +19,7 @@ public class Item {
  Registro registro = new Registro();
  Estado estado;
  Equipo equipo;
+ private List<Estado> listaDeEstados=new ArrayList<Estado>();
 private List<Registro> historial=new ArrayList<Registro>(); 
 //private List<Estado> bifurcacion=new ArrayList<Estado>();
 
@@ -28,6 +29,17 @@ private List<Registro> historial=new ArrayList<Registro>();
 
     public Item() {
         
+    }
+
+    public List<Estado> getListaDeEstados() {
+        return listaDeEstados;
+    }
+    public void agregarListaDeEstados(Estado e){listaDeEstados.add(e);}
+    public void borrarListaDeEstados(int n){listaDeEstados.remove(n);}
+    
+    
+    public void setListaDeEstados(List<Estado> listaDeEstados) {
+        this.listaDeEstados = listaDeEstados;
     }
     public Item(String nombre) {
         this.nombre = nombre;
