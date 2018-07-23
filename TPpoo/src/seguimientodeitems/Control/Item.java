@@ -40,7 +40,7 @@ private List<Registro> historial=new ArrayList<Registro>();
     
     public void addSiguienteEstado(Estado e){estado.AddSiguienteEstado(e);};
     
-    public void selecionDeSiguienteEstado(int i){this.estado= estado.getSiguientesEstados().get(1); };
+    public void selecionDeSiguienteEstado(int i){this.estado = estado.getSiguientesEstados().get(i); };
     
     
     public List<Estado> getSiguienteEstados() {

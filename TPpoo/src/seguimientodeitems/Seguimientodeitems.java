@@ -31,8 +31,8 @@ public class Seguimientodeitems {
         
         creado.AddSiguienteEstado(desarrollo);
         desarrollo.AddSiguienteEstado(validacion);
-        validacion.AddSiguienteEstado(aceptado);
         validacion.AddSiguienteEstado(desarrollo);
+        validacion.AddSiguienteEstado(aceptado);
         aceptado.AddSiguienteEstado(aceptado);
         Tipo reportedeBug= new Tipo("Bug",creado);
         
@@ -48,8 +48,7 @@ public class Seguimientodeitems {
         e.setLider(lider);
         e.setEspecialidad("Bug");
         
-        Item i=new Item();
-        i.setNombre("Bug");
+        Item i=new Item("Bug");
         i.setPrioridad("Alta");
         i.clasificarItem(reportedeBug);
         
@@ -57,11 +56,16 @@ public class Seguimientodeitems {
         
         
         i.setResponsable(e.getMiembros().get(0));
+        i.setEstado(creado);
+       // i.setEstadoActual(i.getEstado());
         
-        i.setEstadoActual(i.getEstado());
-        
-        int l =0;
-        i.siguienteEstado(l);
+        //int l =0;
+        i.siguienteEstado(0);
+        i.siguienteEstado(0);
+        i.siguienteEstado(0);
+        i.siguienteEstado(0);
+        i.siguienteEstado(1);
+        System.out.println(i.getEstado().getNombre());
     }
     
 }
