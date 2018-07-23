@@ -26,7 +26,8 @@ public class Interfaz extends javax.swing.JFrame {
      * Creates new form Interfaz
      */
     public Interfaz() {
-        initComponents();this.setLocationRelativeTo(null);
+        initComponents();this.setLocationRelativeTo(null);jTabbedPane1.setEnabledAt(1,false);jTabbedPane1.setEnabledAt(2,false);
+        jTabbedPane1.setEnabledAt(3,false);
                 ;
     }
 
@@ -49,7 +50,7 @@ public class Interfaz extends javax.swing.JFrame {
         botonBorrar = new javax.swing.JButton();
         campoTextoItem = new javax.swing.JTextField();
         ContadorDeLista = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BotonModificarItem = new javax.swing.JButton();
         JlabelFondo1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -130,13 +131,13 @@ public class Interfaz extends javax.swing.JFrame {
         ContadorDeLista.setText("Cantidad de la lista");
         jPanel1.add(ContadorDeLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
 
-        jButton1.setText("Modificar Item");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotonModificarItem.setText("Modificar Item");
+        BotonModificarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotonModificarItemActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
+        jPanel1.add(BotonModificarItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
 
         JlabelFondo1.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
@@ -349,15 +350,16 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTextoEstadoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+    private void BotonModificarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarItemActionPerformed
+        jTabbedPane1.setEnabledAt(2,true);
         jTabbedPane1.setSelectedIndex(2);
         NombreDelItem.setText(ListaDeItemsTabla.getSelectedValue());
+        jTabbedPane1.setEnabledAt(0,false);
         listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getListaDeEstados().forEach((i) -> {
             modeloEstado.addElement(i.getNombre()); 
         });
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotonModificarItemActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jTabbedPane1.setSelectedIndex(3);
@@ -396,9 +398,10 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_campoTextoLiderActionPerformed
 
     private void AtrasEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasEstadosActionPerformed
-            jTabbedPane1.setSelectedIndex(0);
+        jTabbedPane1.setEnabledAt(0,true);    
+        jTabbedPane1.setSelectedIndex(0);
             modeloEstado.removeAllElements(); 
-            
+        jTabbedPane1.setEnabledAt(2,false);     
         
     }//GEN-LAST:event_AtrasEstadosActionPerformed
 
@@ -442,6 +445,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton BotonAgregar;
     private javax.swing.JButton BotonAgregarEstado;
     private javax.swing.JButton BotonAgregarEstadosSiguientes;
+    private javax.swing.JButton BotonModificarItem;
     private javax.swing.JLabel ContadorDeEstados;
     private javax.swing.JLabel ContadorDeEstadosSiguientes;
     private javax.swing.JLabel ContadorDeLista;
@@ -464,7 +468,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField campoTextoEstadosSiguientes;
     private javax.swing.JTextField campoTextoItem;
     private javax.swing.JTextField campoTextoLider;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
