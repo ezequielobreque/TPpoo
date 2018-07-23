@@ -8,6 +8,7 @@ package seguimientodeitems;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import seguimientodeitems.Control.Estado;
 import seguimientodeitems.Control.Item;
 
 /**
@@ -16,7 +17,8 @@ import seguimientodeitems.Control.Item;
  */
 public class Interfaz extends javax.swing.JFrame {
     List<Item> listaDeItems=  new ArrayList<Item>();
-        Integer num= new Integer(0);
+    List<Estado> listaDeEstados=  new ArrayList<Estado>();
+    Integer num= new Integer(0);
     /**
      * Creates new form Interfaz
      */
@@ -46,6 +48,15 @@ public class Interfaz extends javax.swing.JFrame {
         JlabelFondo1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        BotonAgregarEstado = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        modeloEstado = new DefaultListModel();
+        ListaDeEstados = new javax.swing.JList<>();
+        botonBorrarEstado = new javax.swing.JButton();
+        campoTextoEstado = new javax.swing.JTextField();
+        ContadorDeEstados = new javax.swing.JLabel();
+        JlabelFondo3 = new javax.swing.JLabel();
         JlabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,6 +131,48 @@ public class Interfaz extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab2", jScrollPane2);
 
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BotonAgregarEstado.setText("Agregar");
+        BotonAgregarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAgregarEstadoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(BotonAgregarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+
+        ListaDeEstados.setModel(modeloEstado);
+        ListaDeEstados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListaDeEstados.setRequestFocusEnabled(false);
+        jScrollPane3.setViewportView(ListaDeEstados);
+
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
+
+        botonBorrarEstado.setText("Borrar");
+        botonBorrarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarEstadoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(botonBorrarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 70, -1));
+
+        campoTextoEstado.setText("nombre del item");
+        campoTextoEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTextoEstadoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(campoTextoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 260, -1));
+
+        ContadorDeEstados.setText("Cantidad de la lista");
+        jPanel3.add(ContadorDeEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
+
+        JlabelFondo3.setForeground(new java.awt.Color(255, 255, 255));
+        JlabelFondo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ar/edu/untdf/alumnos/app/view/Nueva Carpeta/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
+        jPanel3.add(JlabelFondo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
+
+        jTabbedPane1.addTab("Items", jPanel3);
+
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         JlabelFondo.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,6 +186,19 @@ public class Interfaz extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_salirActionPerformed
 
+    private void campoTextoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTextoItemActionPerformed
+
+    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+        if(modelo.getSize()>0)
+        {int n =ListaDeItems.getSelectedIndex();
+            modelo.removeElementAt(n);
+            ListaDeItems.setSelectedIndex(0);
+        }
+        ContadorDeLista.setText(String.valueOf(modelo.getSize()));
+    }//GEN-LAST:event_botonBorrarActionPerformed
+
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
         modelo.addElement(campoTextoItem.getText());
         campoTextoItem.setText("");
@@ -141,18 +207,28 @@ public class Interfaz extends javax.swing.JFrame {
         ContadorDeLista.setText(String.valueOf(modelo.getSize()));
     }//GEN-LAST:event_BotonAgregarActionPerformed
 
-    private void campoTextoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoItemActionPerformed
+    private void BotonAgregarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarEstadoActionPerformed
+        modeloEstado.addElement(campoTextoEstado.getText());
+        campoTextoEstado.setText("");
+        campoTextoEstado.requestFocus();
+        ListaDeEstados.setSelectedIndex(0);
+        ContadorDeEstados.setText(String.valueOf(modeloEstado.getSize()));
+     
+    }//GEN-LAST:event_BotonAgregarEstadoActionPerformed
 
-    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-if(modelo.getSize()>0)
-{int n =ListaDeItems.getSelectedIndex();
-modelo.removeElementAt(n);
-ListaDeItems.setSelectedIndex(0);
-}
-ContadorDeLista.setText(String.valueOf(modelo.getSize()));
-    }//GEN-LAST:event_botonBorrarActionPerformed
+    private void botonBorrarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarEstadoActionPerformed
+      if(modeloEstado.getSize()>0)
+        {int n =ListaDeEstados.getSelectedIndex();
+            modelo.removeElementAt(n);
+            ListaDeEstados.setSelectedIndex(0);
+        }
+        ContadorDeEstados.setText(String.valueOf(modeloEstado.getSize()));
+   
+    }//GEN-LAST:event_botonBorrarEstadoActionPerformed
+
+    private void campoTextoEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTextoEstadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,16 +267,25 @@ ContadorDeLista.setText(String.valueOf(modelo.getSize()));
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregar;
+    private javax.swing.JButton BotonAgregarEstado;
+    private javax.swing.JLabel ContadorDeEstados;
     private javax.swing.JLabel ContadorDeLista;
     private javax.swing.JLabel JlabelFondo;
     private javax.swing.JLabel JlabelFondo1;
+    private javax.swing.JLabel JlabelFondo3;
+    private javax.swing.JList<String> ListaDeEstados;
+    private DefaultListModel modeloEstado;
     private javax.swing.JList<String> ListaDeItems;
     private DefaultListModel modelo;
     private javax.swing.JButton botonBorrar;
+    private javax.swing.JButton botonBorrarEstado;
+    private javax.swing.JTextField campoTextoEstado;
     private javax.swing.JTextField campoTextoItem;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton salir;
