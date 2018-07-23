@@ -16,9 +16,12 @@ import seguimientodeitems.Control.Item;
  * @author ezequiel_o
  */
 public class Interfaz extends javax.swing.JFrame {
-    List<Item> listaDeItems=  new ArrayList<Item>();
-    List<Estado> listaDeEstados=  new ArrayList<Estado>();
-    Integer num= new Integer(0);
+   private List<Item> listaDeItems=  new ArrayList<Item>();
+   private  List<Estado> listaDeEstados=  new ArrayList<Estado>();
+   private Integer num= new Integer(0);
+    
+    
+    
     /**
      * Creates new form Interfaz
      */
@@ -41,10 +44,11 @@ public class Interfaz extends javax.swing.JFrame {
         BotonAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         modelo = new DefaultListModel();
-        ListaDeItems = new javax.swing.JList<>();
+        ListaDeItemsTabla = new javax.swing.JList<>();
         botonBorrar = new javax.swing.JButton();
         campoTextoItem = new javax.swing.JTextField();
         ContadorDeLista = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         JlabelFondo1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -52,11 +56,26 @@ public class Interfaz extends javax.swing.JFrame {
         BotonAgregarEstado = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         modeloEstado = new DefaultListModel();
-        ListaDeEstados = new javax.swing.JList<>();
+        ListaDeEstadosTabla = new javax.swing.JList<>();
         botonBorrarEstado = new javax.swing.JButton();
         campoTextoEstado = new javax.swing.JTextField();
         ContadorDeEstados = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        NombreDelItem = new javax.swing.JLabel();
+        campoTextoLider = new javax.swing.JTextField();
+        campoTextoMiembros = new javax.swing.JTextField();
         JlabelFondo3 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        BotonAgregarEstado1 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        modeloEstadosSiguientes = new DefaultListModel();
+        ListaDeEstadosSiguientesTabla = new javax.swing.JList<>();
+        botonBorrarEstado1 = new javax.swing.JButton();
+        campoTextoEstado1 = new javax.swing.JTextField();
+        ContadorDeEstados1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        NombreDelEstado = new javax.swing.JLabel();
+        JlabelFondo4 = new javax.swing.JLabel();
         JlabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,12 +103,12 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel1.add(BotonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
-        ListaDeItems.setModel(modelo);
-        ListaDeItems.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        ListaDeItems.setRequestFocusEnabled(false);
-        jScrollPane1.setViewportView(ListaDeItems);
+        ListaDeItemsTabla.setModel(modelo);
+        ListaDeItemsTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListaDeItemsTabla.setRequestFocusEnabled(false);
+        jScrollPane1.setViewportView(ListaDeItemsTabla);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
 
         botonBorrar.setText("Borrar");
         botonBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -105,10 +124,18 @@ public class Interfaz extends javax.swing.JFrame {
                 campoTextoItemActionPerformed(evt);
             }
         });
-        jPanel1.add(campoTextoItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 260, -1));
+        jPanel1.add(campoTextoItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, -1));
 
         ContadorDeLista.setText("Cantidad de la lista");
         jPanel1.add(ContadorDeLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, -1, -1));
 
         JlabelFondo1.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ar/edu/untdf/alumnos/app/view/Nueva Carpeta/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
@@ -141,12 +168,12 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel3.add(BotonAgregarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
-        ListaDeEstados.setModel(modeloEstado);
-        ListaDeEstados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        ListaDeEstados.setRequestFocusEnabled(false);
-        jScrollPane3.setViewportView(ListaDeEstados);
+        ListaDeEstadosTabla.setModel(modeloEstado);
+        ListaDeEstadosTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListaDeEstadosTabla.setRequestFocusEnabled(false);
+        jScrollPane3.setViewportView(ListaDeEstadosTabla);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 220, -1));
 
         botonBorrarEstado.setText("Borrar");
         botonBorrarEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -156,22 +183,98 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel3.add(botonBorrarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 70, -1));
 
-        campoTextoEstado.setText("nombre del item");
+        campoTextoEstado.setText("nombre del Estado");
         campoTextoEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoTextoEstadoActionPerformed(evt);
             }
         });
-        jPanel3.add(campoTextoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 260, -1));
+        jPanel3.add(campoTextoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, -1));
 
         ContadorDeEstados.setText("Cantidad de la lista");
-        jPanel3.add(ContadorDeEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
+        jPanel3.add(ContadorDeEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 220, -1));
+
+        jButton2.setText("posibles Siguientes estados");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
+        jPanel3.add(NombreDelItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 130, -1));
+
+        campoTextoLider.setText("LiderLegajo");
+        campoTextoLider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTextoLiderActionPerformed(evt);
+            }
+        });
+        jPanel3.add(campoTextoLider, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
+
+        campoTextoMiembros.setText("Miembros");
+        campoTextoMiembros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTextoMiembrosActionPerformed(evt);
+            }
+        });
+        jPanel3.add(campoTextoMiembros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 220, -1));
 
         JlabelFondo3.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ar/edu/untdf/alumnos/app/view/Nueva Carpeta/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel3.add(JlabelFondo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
 
-        jTabbedPane1.addTab("Items", jPanel3);
+        jTabbedPane1.addTab("Estados", jPanel3);
+
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BotonAgregarEstado1.setText("Agregar");
+        BotonAgregarEstado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAgregarEstado1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(BotonAgregarEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+
+        ListaDeEstadosSiguientesTabla.setModel(modeloEstadosSiguientes);
+        ListaDeEstadosSiguientesTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListaDeEstadosSiguientesTabla.setRequestFocusEnabled(false);
+        jScrollPane4.setViewportView(ListaDeEstadosSiguientesTabla);
+
+        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
+
+        botonBorrarEstado1.setText("Borrar");
+        botonBorrarEstado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarEstado1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(botonBorrarEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 70, -1));
+
+        campoTextoEstado1.setText("nombre del Estado");
+        campoTextoEstado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTextoEstado1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(campoTextoEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, -1));
+
+        ContadorDeEstados1.setText("Cantidad de la lista");
+        jPanel4.add(ContadorDeEstados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
+
+        jButton3.setText("posibles Siguientes estados");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
+        jPanel4.add(NombreDelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 130, -1));
+
+        JlabelFondo4.setForeground(new java.awt.Color(255, 255, 255));
+        JlabelFondo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ar/edu/untdf/alumnos/app/view/Nueva Carpeta/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
+        jPanel4.add(JlabelFondo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
+
+        jTabbedPane1.addTab("Sigientes", jPanel4);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -192,43 +295,94 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
         if(modelo.getSize()>0)
-        {int n =ListaDeItems.getSelectedIndex();
-            modelo.removeElementAt(n);
-            ListaDeItems.setSelectedIndex(0);
+        {int n =ListaDeItemsTabla.getSelectedIndex();
+            modelo.removeElementAt(n);            
+        listaDeItems.remove(n);
+        
+            ListaDeItemsTabla.setSelectedIndex(0);
         }
         ContadorDeLista.setText(String.valueOf(modelo.getSize()));
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
         modelo.addElement(campoTextoItem.getText());
+        Item nuevo =  new Item(campoTextoItem.getText());
+        listaDeItems.add(nuevo);
+        
         campoTextoItem.setText("");
         campoTextoItem.requestFocus();
-        ListaDeItems.setSelectedIndex(0);
+        ListaDeItemsTabla.setSelectedIndex(0);
         ContadorDeLista.setText(String.valueOf(modelo.getSize()));
+        listaDeItems.forEach((i) -> {
+            System.out.println (i.getNombre()); //Muestra cada uno de los nombres dentro de listaDeNombres
+        });
+        
+        
+        
+        
     }//GEN-LAST:event_BotonAgregarActionPerformed
 
     private void BotonAgregarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarEstadoActionPerformed
         modeloEstado.addElement(campoTextoEstado.getText());
         campoTextoEstado.setText("");
         campoTextoEstado.requestFocus();
-        ListaDeEstados.setSelectedIndex(0);
+        ListaDeEstadosTabla.setSelectedIndex(0);
         ContadorDeEstados.setText(String.valueOf(modeloEstado.getSize()));
      
     }//GEN-LAST:event_BotonAgregarEstadoActionPerformed
 
     private void botonBorrarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarEstadoActionPerformed
       if(modeloEstado.getSize()>0)
-        {int n =ListaDeEstados.getSelectedIndex();
+        {int n =ListaDeEstadosTabla.getSelectedIndex();
             modelo.removeElementAt(n);
-            ListaDeEstados.setSelectedIndex(0);
+            ListaDeEstadosTabla.setSelectedIndex(0);
         }
         ContadorDeEstados.setText(String.valueOf(modeloEstado.getSize()));
-   
+        
     }//GEN-LAST:event_botonBorrarEstadoActionPerformed
 
     private void campoTextoEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTextoEstadoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        jTabbedPane1.setSelectedIndex(2);
+        NombreDelItem.setText(ListaDeItemsTabla.getSelectedValue());
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int n =ListaDeEstadosTabla.getSelectedIndex();
+        //listaDeEstados.get(n).AddSiguienteEstado();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void BotonAgregarEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarEstado1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonAgregarEstado1ActionPerformed
+
+    private void botonBorrarEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarEstado1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonBorrarEstado1ActionPerformed
+
+    private void campoTextoEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoEstado1ActionPerformed
+        
+    }//GEN-LAST:event_campoTextoEstado1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        jTabbedPane1.setSelectedIndex(3);
+        NombreDelEstado.setText(ListaDeEstadosTabla.getSelectedValue());
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void campoTextoLiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoLiderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTextoLiderActionPerformed
+
+    private void campoTextoMiembrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoMiembrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTextoMiembrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,24 +422,40 @@ public class Interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregar;
     private javax.swing.JButton BotonAgregarEstado;
+    private javax.swing.JButton BotonAgregarEstado1;
     private javax.swing.JLabel ContadorDeEstados;
+    private javax.swing.JLabel ContadorDeEstados1;
     private javax.swing.JLabel ContadorDeLista;
     private javax.swing.JLabel JlabelFondo;
     private javax.swing.JLabel JlabelFondo1;
     private javax.swing.JLabel JlabelFondo3;
-    private javax.swing.JList<String> ListaDeEstados;
+    private javax.swing.JLabel JlabelFondo4;
+    private javax.swing.JList<String> ListaDeEstadosSiguientesTabla;
+    private DefaultListModel modeloEstadosSiguientes;
+    private javax.swing.JList<String> ListaDeEstadosTabla;
     private DefaultListModel modeloEstado;
-    private javax.swing.JList<String> ListaDeItems;
+    private javax.swing.JList<String> ListaDeItemsTabla;
     private DefaultListModel modelo;
+    private javax.swing.JLabel NombreDelEstado;
+    private javax.swing.JLabel NombreDelItem;
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonBorrarEstado;
+    private javax.swing.JButton botonBorrarEstado1;
     private javax.swing.JTextField campoTextoEstado;
+    private javax.swing.JTextField campoTextoEstado1;
     private javax.swing.JTextField campoTextoItem;
+    private javax.swing.JTextField campoTextoLider;
+    private javax.swing.JTextField campoTextoMiembros;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton salir;

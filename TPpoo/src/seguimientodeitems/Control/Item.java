@@ -26,6 +26,9 @@ private List<Registro> historial=new ArrayList<Registro>();
         return historial;
     }
 
+    public Item() {
+        
+    }
     public Item(String nombre) {
         this.nombre = nombre;
     }
