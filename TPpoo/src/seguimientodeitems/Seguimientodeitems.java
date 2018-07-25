@@ -36,9 +36,9 @@ public class Seguimientodeitems {
         aceptado.AddSiguienteEstado(aceptado);
         Tipo reportedeBug= new Tipo("Bug",creado);
         
-        Miembro empleado = new Miembro();
-        Miembro empleado2= new Miembro();
-        Miembro lider = new LiderProyecto();
+        Miembro empleado = new Miembro("juang");
+        Miembro empleado2= new Miembro("roberto");
+        Miembro lider = new LiderProyecto("nombre");
         String n = new String ("nombre");
                 
         lider.setNombre(n);
@@ -65,6 +65,7 @@ public class Seguimientodeitems {
         i.siguienteEstado(0);
         i.siguienteEstado(0);
         i.siguienteEstado(1);
+        
         System.out.println(i.getEstado().getNombre());
     }
     

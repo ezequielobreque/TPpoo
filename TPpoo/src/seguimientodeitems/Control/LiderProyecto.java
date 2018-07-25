@@ -11,14 +11,18 @@ package seguimientodeitems.Control;
  */
 public class LiderProyecto extends Miembro {
 
-    int legajo;
+    Integer legajo;
+
+    public LiderProyecto(String nombre) {
+        super(nombre);
+    }
     
     
   public int getLegajo() {
         return legajo;
     }
 
-    public void setLegajo(int legajo) {
+    public void setLegajo(Integer legajo) {
         this.legajo = legajo;
     }
     

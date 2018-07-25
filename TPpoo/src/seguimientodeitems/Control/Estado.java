@@ -24,7 +24,10 @@ private List<Estado> siguientesEstados=new ArrayList<Estado>();
         siguientesEstados.add(e);
     
     };
+    public void borrarSiguienteEstado(int n){
+        siguientesEstados.remove(n);
     
+    };
     public void setSiguientesEstados(List<Estado> siguientesEstados) {
         this.siguientesEstados = siguientesEstados;
     }

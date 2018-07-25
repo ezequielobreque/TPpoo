@@ -29,7 +29,9 @@ public class Equipo {
     public void agregarMiembro(Miembro m){
         miembros.add(m);
     }
-    
+    public void borrarMiembro(int n){
+    miembros.remove(n);
+    }
     public List<Miembro> getMiembros() {
         return miembros;
     }

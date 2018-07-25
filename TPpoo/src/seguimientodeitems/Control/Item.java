@@ -122,7 +122,7 @@ private int indice;
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
-
+    
   
     public void setResponsable(Miembro responsable){
         registro.setResponsable(responsable);
