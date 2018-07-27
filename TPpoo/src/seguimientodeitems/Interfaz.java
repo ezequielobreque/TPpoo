@@ -333,7 +333,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonAgregarEstadoActionPerformed(evt);
             }
         });
-        jPanel3.add(BotonAgregarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 170, -1));
+        jPanel3.add(BotonAgregarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 190, -1));
 
         ListaDeEstadosTabla.setModel(modeloEstado);
         ListaDeEstadosTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -350,7 +350,7 @@ public class Interfaz extends javax.swing.JFrame {
                 botonBorrarEstadoActionPerformed(evt);
             }
         });
-        jPanel3.add(botonBorrarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 170, -1));
+        jPanel3.add(botonBorrarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 190, -1));
 
         campoTextoEstado.setText("nombre del Estado");
         campoTextoEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -369,7 +369,7 @@ public class Interfaz extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 170, -1));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 190, -1));
         jPanel3.add(NombreDelItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 130, -1));
 
         AtrasEstados.setBackground(new java.awt.Color(0, 255, 255));
@@ -380,7 +380,7 @@ public class Interfaz extends javax.swing.JFrame {
                 AtrasEstadosActionPerformed(evt);
             }
         });
-        jPanel3.add(AtrasEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 170, 30));
+        jPanel3.add(AtrasEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 190, 30));
 
         jButton3.setBackground(new java.awt.Color(0, 255, 0));
         jButton3.setText("Selecione Primer Estado");
@@ -649,10 +649,20 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBorrarEstadosSiguientesActionPerformed
 
     private void AtrasEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasEstadosActionPerformed
-        jTabbedPane1.setEnabledAt(0,true);    
+        int n=ListaDeEstadosTabla.getSelectedIndex();
+        if(listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getEstado()==null && modeloEstado.getSize()>0){
+        JOptionPane.showMessageDialog(this,"Selecione el Primer Estado Antes de salir");
+        
+        }else{jTabbedPane1.setEnabledAt(0,true);    
         jTabbedPane1.setSelectedIndex(0);
             modeloEstado.removeAllElements(); 
         jTabbedPane1.setEnabledAt(2,false);     
+        }
+            
+            
+        
+            
+        
         
     }//GEN-LAST:event_AtrasEstadosActionPerformed
 
