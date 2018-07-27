@@ -5,6 +5,7 @@
  */
 package seguimientodeitems.Control;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +13,13 @@ import java.util.List;
  *
  * @author ezequiel_o
  */
-public class Tipo {
+public class Tipo implements Serializable {
     String nombre;
     private Estado primerEstado;
 
-    public Tipo(String nombre ,Estado primerEstado){
+    public Tipo(String nombre ){
         this.nombre=nombre;
-        this.primerEstado=primerEstado;
+        
     }   
     public String getNombre() {
         return nombre;

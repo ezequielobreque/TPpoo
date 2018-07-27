@@ -5,6 +5,7 @@
  */
 package seguimientodeitems.Control;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author ezequiel_o
  */
-public class Equipo {
+public class Equipo implements Serializable {
         String especialidad;
         Miembro lider;
         private List<Miembro> miembros = new ArrayList<Miembro>();

@@ -5,11 +5,13 @@
  */
 package seguimientodeitems.Control;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ezequiel_o
  */
-public class LiderProyecto extends Miembro {
+public class LiderProyecto extends Miembro implements Serializable {
 
     Integer legajo;
 

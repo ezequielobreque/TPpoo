@@ -9,9 +9,10 @@ package seguimientodeitems.Control;
  *
  * @author ezequiel_o
  */
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar; 
-public class Registro {
+public class Registro implements Serializable {
      Estado estadoActual;
      Calendar fecha;
      Miembro Responsable;           

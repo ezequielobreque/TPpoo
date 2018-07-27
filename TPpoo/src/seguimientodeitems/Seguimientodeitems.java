@@ -34,7 +34,7 @@ public class Seguimientodeitems {
         validacion.AddSiguienteEstado(desarrollo);
         validacion.AddSiguienteEstado(aceptado);
         aceptado.AddSiguienteEstado(aceptado);
-        Tipo reportedeBug= new Tipo("Bug",creado);
+        Tipo reportedeBug= new Tipo("Bug");
         
         Miembro empleado = new Miembro("juang");
         Miembro empleado2= new Miembro("roberto");
@@ -51,18 +51,26 @@ public class Seguimientodeitems {
         Item i=new Item("Bug");
         i.setPrioridad("Alta");
         i.clasificarItem(reportedeBug);
-        
         i.setEquipo(e);
-        
         
         i.setResponsable(e.getMiembros().get(0));
         i.setEstado(creado);
-       // i.setEstadoActual(i.getEstado());
+       i.setEstadoActual(i.getEstado());
+       i.getEquipo().getLider().getNombre();
+        i.siguienteEstado(0);
+        System.out.println(i.getEstado().getSiguientesEstados().get(0).getNombre());
+        int l =0;
+        i.siguienteEstado(0);
+        System.out.println( i.getHistorial().get(0).getResponsable());;
+        i.setResponsable(i.getEquipo().getMiembros().get(1));
+        i.siguienteEstado(0);
         
-        //int l =0;
+        System.out.println( i.getHistorial().get(1).getResponsable());
+       
+        i.setResponsable(i.getEquipo().getMiembros().get(0));
         i.siguienteEstado(0);
-        i.siguienteEstado(0);
-        i.siguienteEstado(0);
+        
+        System.out.println( i.getHistorial().get(2).getResponsable());
         i.siguienteEstado(0);
         i.siguienteEstado(1);
         

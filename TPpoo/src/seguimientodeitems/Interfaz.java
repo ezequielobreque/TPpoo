@@ -5,14 +5,21 @@
  */
 package seguimientodeitems;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import seguimientodeitems.Control.Equipo;
 import seguimientodeitems.Control.Estado;
 import seguimientodeitems.Control.Item;
 import seguimientodeitems.Control.LiderProyecto;
 import seguimientodeitems.Control.Miembro;
+import seguimientodeitems.Control.Registro;
+import seguimientodeitems.Control.Tipo;
+import seguimientodeitems.Control.Users;
 
 /**
  *
@@ -21,18 +28,31 @@ import seguimientodeitems.Control.Miembro;
 public class Interfaz extends javax.swing.JFrame {
    private List<Item> listaDeItems=  new ArrayList<Item>();
    private  List<Estado> listaDeEstados=  new ArrayList<Estado>();
-   private Integer num= new Integer(0);
+   Integer n;
    private LiderProyecto lider; 
+   private Users user;
     
     
     /**
      * Creates new form Interfaz
      */
-    public Interfaz(LiderProyecto Lider) {
-        this.lider=Lider;
-        initComponents();this.setLocationRelativeTo(null);jTabbedPane1.setEnabledAt(1,false);jTabbedPane1.setEnabledAt(2,false);
-        jTabbedPane1.setEnabledAt(3,false);jTabbedPane1.setEnabledAt(4,true);
-                ;
+    public Interfaz(Users usario,Integer n) {
+        this.n=n;
+        this.user=usario;
+        this.lider=usario.getLider();
+        this.listaDeItems=usario.getListaDeItems();
+        initComponents();this.setLocationRelativeTo(null);
+        jTabbedPane1.setEnabledAt(1,false);
+        jTabbedPane1.setEnabledAt(2,false);
+        jTabbedPane1.setEnabledAt(3,false);
+        jTabbedPane1.setEnabledAt(4,false);
+        modeloTabla.addColumn("Estados anteriores");
+        modeloTabla.addColumn("Responsable");
+        modeloTabla.addColumn("fecha");
+        this.TableDeEstados.setModel(modeloTabla);
+        listaDeItems.forEach((i) -> {
+            modelo.addElement(i.getNombre()); 
+        });
     }
 
     private Interfaz() {
@@ -61,9 +81,24 @@ public class Interfaz extends javax.swing.JFrame {
         BotonModificarItem = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         PrioridadItem = new javax.swing.JTextField();
+        GuardarTodo = new javax.swing.JButton();
+        ComenzarItem = new javax.swing.JButton();
+        LogOut = new javax.swing.JButton();
+        tipoItem = new javax.swing.JTextField();
         JlabelFondo1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        ComboBoxDeSiguienteItem = new javax.swing.JComboBox<>();
+        ComboBoxDeResponsables = new javax.swing.JComboBox<>();
+        NombreDeEstado = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        ResponsableActual = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        pasar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        modeloTabla = new DefaultTableModel();
+        TableDeEstados = new javax.swing.JTable();
+        JlabelFondo6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         BotonAgregarEstado = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -71,10 +106,11 @@ public class Interfaz extends javax.swing.JFrame {
         ListaDeEstadosTabla = new javax.swing.JList<>();
         botonBorrarEstado = new javax.swing.JButton();
         campoTextoEstado = new javax.swing.JTextField();
-        ContadorDeEstados = new javax.swing.JLabel();
+        primerEstadoDelItem = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         NombreDelItem = new javax.swing.JLabel();
         AtrasEstados = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         JlabelFondo3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         BotonAgregarEstadosSiguientes = new javax.swing.JButton();
@@ -82,7 +118,6 @@ public class Interfaz extends javax.swing.JFrame {
         modeloEstadosSiguientes = new DefaultListModel();
         ListaDeEstadosSiguientesTabla = new javax.swing.JList<>();
         botonBorrarEstadosSiguientes = new javax.swing.JButton();
-        campoTextoEstadosSiguientes = new javax.swing.JTextField();
         ContadorDeEstadosSiguientes = new javax.swing.JLabel();
         NombreDelEstadoSiguiente = new javax.swing.JLabel();
         AtrasEstados1 = new javax.swing.JButton();
@@ -116,7 +151,7 @@ public class Interfaz extends javax.swing.JFrame {
                 salirActionPerformed(evt);
             }
         });
-        getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 0, 30, -1));
+        getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 0, 30, -1));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -128,22 +163,24 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(BotonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 110, -1));
+        jPanel1.add(BotonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 130, -1));
 
         ListaDeItemsTabla.setModel(modelo);
         ListaDeItemsTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListaDeItemsTabla.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(ListaDeItemsTabla);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 220, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 220, -1));
 
+        botonBorrar.setBackground(new java.awt.Color(204, 0, 0));
+        botonBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/secuencia-de-comandos-de-borrar-icono-4499-16.png"))); // NOI18N
         botonBorrar.setText("Borrar");
         botonBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 110, -1));
+        jPanel1.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 130, -1));
 
         campoTextoItem.setText("Nombre del item");
         campoTextoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -154,15 +191,17 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(campoTextoItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, -1));
 
         ContadorDeLista.setText("Cantidad de la lista");
-        jPanel1.add(ContadorDeLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
+        jPanel1.add(ContadorDeLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 220, -1));
 
+        BotonModificarItem.setBackground(new java.awt.Color(255, 255, 51));
+        BotonModificarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/preferencias-de-compositor-icono-5304-16.png"))); // NOI18N
         BotonModificarItem.setText("Modificar Item");
         BotonModificarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonModificarItemActionPerformed(evt);
             }
         });
-        jPanel1.add(BotonModificarItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 110, -1));
+        jPanel1.add(BotonModificarItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 130, -1));
 
         jButton4.setText("Asignar equipo");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +209,7 @@ public class Interfaz extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 110, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 130, -1));
 
         PrioridadItem.setText("Prioridad");
         PrioridadItem.addActionListener(new java.awt.event.ActionListener() {
@@ -180,26 +219,109 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel1.add(PrioridadItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
 
+        GuardarTodo.setText("guardar todo");
+        GuardarTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarTodoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(GuardarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 130, -1));
+
+        ComenzarItem.setBackground(new java.awt.Color(255, 0, 255));
+        ComenzarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/ver-el-listado-completo-icono-4252-16.png"))); // NOI18N
+        ComenzarItem.setText("Comenzar Item");
+        ComenzarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComenzarItemActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ComenzarItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 130, -1));
+
+        LogOut.setText("Log Out");
+        LogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogOutActionPerformed(evt);
+            }
+        });
+        jPanel1.add(LogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 130, -1));
+
+        tipoItem.setText("Tipo");
+        jPanel1.add(tipoItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 220, -1));
+
         JlabelFondo1.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
-        jPanel1.add(JlabelFondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 280));
+        jPanel1.add(JlabelFondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 280));
 
         jTabbedPane1.addTab("Items", jPanel1);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane1.addTab("tab2", jScrollPane2);
+        jButton1.setBackground(new java.awt.Color(0, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
+        jButton1.setText("atras");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 90, -1));
+
+        ComboBoxDeSiguienteItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxDeSiguienteItemActionPerformed(evt);
+            }
+        });
+        jPanel5.add(ComboBoxDeSiguienteItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 140, -1));
+
+        ComboBoxDeResponsables.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxDeResponsablesActionPerformed(evt);
+            }
+        });
+        jPanel5.add(ComboBoxDeResponsables, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 140, -1));
+
+        NombreDeEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        NombreDeEstado.setForeground(new java.awt.Color(0, 204, 51));
+        NombreDeEstado.setText("num");
+        jPanel5.add(NombreDeEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 250, -1));
+
+        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setText("Responsable");
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 140, -1));
+
+        ResponsableActual.setBackground(new java.awt.Color(51, 255, 51));
+        ResponsableActual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/anadir-informe-icono-6797-16.png"))); // NOI18N
+        ResponsableActual.setText("Selecionar Responsable");
+        ResponsableActual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResponsableActualActionPerformed(evt);
+            }
+        });
+        jPanel5.add(ResponsableActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 150, -1));
+
+        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel5.setText("Siguiente Item");
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, -1));
+
+        pasar.setBackground(new java.awt.Color(255, 0, 0));
+        pasar.setText("Pasar a siguiente");
+        pasar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(pasar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 130, -1));
+
+        TableDeEstados.setModel(modeloTabla);
+        jScrollPane2.setViewportView(TableDeEstados);
+
+        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
+
+        JlabelFondo6.setForeground(new java.awt.Color(255, 255, 255));
+        JlabelFondo6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
+        jPanel5.add(JlabelFondo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 280));
+
+        jTabbedPane1.addTab("Registro", jPanel5);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -211,7 +333,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonAgregarEstadoActionPerformed(evt);
             }
         });
-        jPanel3.add(BotonAgregarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 20, 170, -1));
+        jPanel3.add(BotonAgregarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 170, -1));
 
         ListaDeEstadosTabla.setModel(modeloEstado);
         ListaDeEstadosTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -220,13 +342,15 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
 
+        botonBorrarEstado.setBackground(new java.awt.Color(255, 51, 51));
+        botonBorrarEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/secuencia-de-comandos-de-borrar-icono-4499-16.png"))); // NOI18N
         botonBorrarEstado.setText("Borrar");
         botonBorrarEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBorrarEstadoActionPerformed(evt);
             }
         });
-        jPanel3.add(botonBorrarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 170, -1));
+        jPanel3.add(botonBorrarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 170, -1));
 
         campoTextoEstado.setText("nombre del Estado");
         campoTextoEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -236,8 +360,8 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel3.add(campoTextoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, -1));
 
-        ContadorDeEstados.setText("Cantidad de la lista");
-        jPanel3.add(ContadorDeEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, -1));
+        primerEstadoDelItem.setText("Primer Estado");
+        jPanel3.add(primerEstadoDelItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 140, 20));
 
         jButton2.setText("posibles Siguientes estados");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -245,20 +369,31 @@ public class Interfaz extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 170, -1));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 170, -1));
         jPanel3.add(NombreDelItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 130, -1));
 
+        AtrasEstados.setBackground(new java.awt.Color(0, 255, 255));
+        AtrasEstados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
         AtrasEstados.setText("atras");
         AtrasEstados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AtrasEstadosActionPerformed(evt);
             }
         });
-        jPanel3.add(AtrasEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 103, 170, 30));
+        jPanel3.add(AtrasEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 170, 30));
+
+        jButton3.setBackground(new java.awt.Color(0, 255, 0));
+        jButton3.setText("Selecione Primer Estado");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 160, -1));
 
         JlabelFondo3.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
-        jPanel3.add(JlabelFondo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 280));
+        jPanel3.add(JlabelFondo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 280));
 
         jTabbedPane1.addTab("Estados", jPanel3);
 
@@ -272,59 +407,55 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonAgregarEstadosSiguientesActionPerformed(evt);
             }
         });
-        jPanel4.add(BotonAgregarEstadosSiguientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, -1, -1));
+        jPanel4.add(BotonAgregarEstadosSiguientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 100, -1));
 
         ListaDeEstadosSiguientesTabla.setModel(modeloEstadosSiguientes);
         ListaDeEstadosSiguientesTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListaDeEstadosSiguientesTabla.setRequestFocusEnabled(false);
         jScrollPane4.setViewportView(ListaDeEstadosSiguientesTabla);
 
-        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 220, -1));
+        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 220, -1));
 
+        botonBorrarEstadosSiguientes.setBackground(new java.awt.Color(255, 0, 0));
+        botonBorrarEstadosSiguientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/secuencia-de-comandos-de-borrar-icono-4499-16.png"))); // NOI18N
         botonBorrarEstadosSiguientes.setText("Borrar");
         botonBorrarEstadosSiguientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBorrarEstadosSiguientesActionPerformed(evt);
             }
         });
-        jPanel4.add(botonBorrarEstadosSiguientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 70, -1));
-
-        campoTextoEstadosSiguientes.setText("nombre del Estado");
-        campoTextoEstadosSiguientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoEstadosSiguientesActionPerformed(evt);
-            }
-        });
-        jPanel4.add(campoTextoEstadosSiguientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, -1));
+        jPanel4.add(botonBorrarEstadosSiguientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 100, -1));
 
         ContadorDeEstadosSiguientes.setText("Cantidad de la lista");
         jPanel4.add(ContadorDeEstadosSiguientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 220, 10));
         jPanel4.add(NombreDelEstadoSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 130, -1));
 
+        AtrasEstados1.setBackground(new java.awt.Color(51, 255, 255));
+        AtrasEstados1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
         AtrasEstados1.setText("atras");
         AtrasEstados1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AtrasEstados1ActionPerformed(evt);
             }
         });
-        jPanel4.add(AtrasEstados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 100, -1));
+        jPanel4.add(AtrasEstados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 110, -1));
 
         ListaDeEstadosSiguientesTabla2.setModel(modeloEstadosSiguientes2);
         ListaDeEstadosSiguientesTabla2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListaDeEstadosSiguientesTabla2.setRequestFocusEnabled(false);
         jScrollPane5.setViewportView(ListaDeEstadosSiguientesTabla2);
 
-        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 210, -1));
+        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, -1));
 
         jLabel1.setText("Selecione un estado:");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 190, 20));
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 190, 20));
 
         jLabel2.setText("Posibles estados siguientes:");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 210, -1));
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 210, 20));
 
         JlabelFondo4.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
-        jPanel4.add(JlabelFondo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 280));
+        jPanel4.add(JlabelFondo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 280));
 
         jTabbedPane1.addTab("Sigientes", jPanel4);
 
@@ -353,31 +484,34 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonAgregarEquipo1ActionPerformed(evt);
             }
         });
-        jPanel2.add(BotonAgregarEquipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 20, 170, -1));
+        jPanel2.add(BotonAgregarEquipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 170, -1));
 
+        botonBorrarEquipo1.setBackground(new java.awt.Color(255, 51, 51));
         botonBorrarEquipo1.setText("Borrar");
         botonBorrarEquipo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBorrarEquipo1ActionPerformed(evt);
             }
         });
-        jPanel2.add(botonBorrarEquipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 170, -1));
+        jPanel2.add(botonBorrarEquipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 170, -1));
 
+        atrasEquipo.setBackground(new java.awt.Color(51, 255, 255));
+        atrasEquipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
         atrasEquipo.setText("atras");
         atrasEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atrasEquipoActionPerformed(evt);
             }
         });
-        jPanel2.add(atrasEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 170, -1));
+        jPanel2.add(atrasEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 170, -1));
 
         JlabelFondo5.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
-        jPanel2.add(JlabelFondo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 280));
+        jPanel2.add(JlabelFondo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 280));
 
         jTabbedPane1.addTab("equipo", jPanel2);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 300));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 300));
 
         JlabelFondo.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
@@ -409,10 +543,13 @@ public class Interfaz extends javax.swing.JFrame {
         modelo.addElement(campoTextoItem.getText());
         Item nuevo =  new Item(campoTextoItem.getText());
         Equipo equipo= new Equipo();
-        
-        //equipo.setLider(lider);
+        Tipo tipo= new Tipo(tipoItem.getText());
+        nuevo.setTipo(tipo);
+        equipo.setLider(lider);
         nuevo.setEquipo(equipo);
         nuevo.setPrioridad(PrioridadItem.getText());
+        
+        
         listaDeItems.add(nuevo);
         
         campoTextoItem.setText("");
@@ -435,7 +572,7 @@ public class Interfaz extends javax.swing.JFrame {
         campoTextoEstado.setText("");
         campoTextoEstado.requestFocus();
         ListaDeEstadosTabla.setSelectedIndex(0);
-        ContadorDeEstados.setText(String.valueOf(modeloEstado.getSize()));
+        
      
     }//GEN-LAST:event_BotonAgregarEstadoActionPerformed
 
@@ -446,7 +583,7 @@ public class Interfaz extends javax.swing.JFrame {
             listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).borrarListaDeEstados(n);
             ListaDeEstadosTabla.setSelectedIndex(0);
     }
-        ContadorDeEstados.setText(String.valueOf(modeloEstado.getSize()));
+        primerEstadoDelItem.setText(String.valueOf(modeloEstado.getSize()));
         
     }//GEN-LAST:event_botonBorrarEstadoActionPerformed
 
@@ -457,7 +594,8 @@ public class Interfaz extends javax.swing.JFrame {
     private void BotonModificarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarItemActionPerformed
         jTabbedPane1.setEnabledAt(2,true);
         jTabbedPane1.setSelectedIndex(2);
-        NombreDelItem.setText(ListaDeItemsTabla.getSelectedValue());
+        NombreDelItem.setText(ListaDeItemsTabla.getSelectedValue()+"   "+
+                listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre());
         jTabbedPane1.setEnabledAt(0,false);
         listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getListaDeEstados().forEach((i) -> {
             modeloEstado.addElement(i.getNombre()); 
@@ -468,7 +606,8 @@ public class Interfaz extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jTabbedPane1.setEnabledAt(3,true);
         jTabbedPane1.setSelectedIndex(3);
-        NombreDelEstadoSiguiente.setText(ListaDeEstadosTabla.getSelectedValue());
+        NombreDelEstadoSiguiente.setText(ListaDeEstadosTabla.getSelectedValue()+"   "+
+                listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre());
         jTabbedPane1.setEnabledAt(2,false);
         listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getListaDeEstados().forEach((i) -> {
             modeloEstadosSiguientes2.addElement(i.getNombre()); 
@@ -490,8 +629,7 @@ public class Interfaz extends javax.swing.JFrame {
         Estado nuevo= listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getListaDeEstados().get(ListaDeEstadosSiguientesTabla2.getSelectedIndex());
         listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getListaDeEstados().get(n).AddSiguienteEstado(nuevo);
         //listaDeEstados.get(n).AddSiguienteEstado(nuevo);
-        campoTextoEstadosSiguientes.setText("");
-        campoTextoEstadosSiguientes.requestFocus();
+        
         ListaDeEstadosSiguientesTabla.setSelectedIndex(0);
         ListaDeEstadosSiguientesTabla2.setSelectedIndex(0);
         ContadorDeEstadosSiguientes.setText(String.valueOf(modeloEstado.getSize()));
@@ -526,10 +664,6 @@ public class Interfaz extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(3,false);     
         
     }//GEN-LAST:event_AtrasEstados1ActionPerformed
-
-    private void campoTextoEstadosSiguientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoEstadosSiguientesActionPerformed
-         
-    }//GEN-LAST:event_campoTextoEstadosSiguientesActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
            jTabbedPane1.setEnabledAt(4,true);    
@@ -577,6 +711,128 @@ public class Interfaz extends javax.swing.JFrame {
                 // TODO add your handling code here:
     }//GEN-LAST:event_atrasEquipoActionPerformed
 
+    private void GuardarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarTodoActionPerformed
+      boolean f=true;
+      Programa prog=new Programa(f,this.user,this.n);
+      prog.setVisible(false);
+      
+    }//GEN-LAST:event_GuardarTodoActionPerformed
+
+    private void ComboBoxDeResponsablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxDeResponsablesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxDeResponsablesActionPerformed
+
+    private void ComboBoxDeSiguienteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxDeSiguienteItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxDeSiguienteItemActionPerformed
+
+    private void ComenzarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComenzarItemActionPerformed
+       int n= ListaDeItemsTabla.getSelectedIndex();
+       jTabbedPane1.setEnabledAt(1,true);//entro al registro
+        jTabbedPane1.setSelectedIndex(1);
+       jTabbedPane1.setEnabledAt(0,false);
+       NombreDeEstado.setText(listaDeItems.get(n).getEstado().getNombre()+"   "+
+                listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre()
+       );
+        for (Miembro i: listaDeItems.get(n).getEquipo().getMiembros()) {
+
+        ComboBoxDeResponsables.addItem(i.getNombre()); //Muestra cada uno de los nombres dentro de listaDeNombres
+
+    }
+        for (Estado i: listaDeItems.get(n).getEstado().getSiguientesEstados()) {
+
+        ComboBoxDeSiguienteItem.addItem(i.getNombre()); //Muestra cada uno de los nombres dentro de listaDeNombres
+
+    
+        }
+        String[] agregar= new String[3];
+        Item iz=  listaDeItems.get(n);
+        for (Registro i: iz.getHistorial()) {
+
+        agregar[0]=i.getEstadoActual().getNombre();
+        agregar[1]=i.getResponsable().getNombre() ;       
+        agregar[2]=i.getFecha();
+        modeloTabla.addRow(agregar);
+
+        }
+    }//GEN-LAST:event_ComenzarItemActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       jTabbedPane1.setEnabledAt(0,true);//entro al registro
+        jTabbedPane1.setSelectedIndex(0);
+       ComboBoxDeResponsables.removeAllItems();
+       ComboBoxDeSiguienteItem.removeAllItems();
+        jTabbedPane1.setEnabledAt(1,false);
+        for (int i = 0; i <modeloTabla.getRowCount() ; ++i) {
+    modeloTabla.removeRow(i);
+}
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ResponsableActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResponsableActualActionPerformed
+      int n= ListaDeItemsTabla.getSelectedIndex();
+      
+    
+      
+      int i= ComboBoxDeResponsables.getSelectedIndex();
+      
+      listaDeItems.get(n).setResponsable(listaDeItems.get(n).getEquipo().getMiembros().get(i));//asigno el miembro como responsalbe
+      listaDeItems.get(n).setEstadoActual(listaDeItems.get(n).getEstado());
+      
+    }//GEN-LAST:event_ResponsableActualActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int n=ListaDeEstadosTabla.getSelectedIndex();
+        
+        Estado e=listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getListaDeEstados().get(n);
+        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).setEstado(e);
+        Estado x=listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getEstado();
+        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).setEstadoActual(x);
+        primerEstadoDelItem.setText( " Primer Estado : "+String.valueOf(listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getEstado().getNombre()));
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void pasarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasarActionPerformed
+      int n= ListaDeItemsTabla.getSelectedIndex();
+      
+    
+      if(listaDeItems.get(n).getResponsable()==null)
+      {JOptionPane.showMessageDialog(this,"Sin Responsable Asignado");}
+      else{
+      int i= ComboBoxDeSiguienteItem.getSelectedIndex();
+      
+      
+      listaDeItems.get(n).siguienteEstado(i);
+      ComboBoxDeResponsables.removeAllItems();
+      ComboBoxDeSiguienteItem.removeAllItems();
+      for (Miembro x: listaDeItems.get(n).getEquipo().getMiembros()) {
+
+        ComboBoxDeResponsables.addItem(x.getNombre()); //Muestra cada uno de los nombres dentro de listaDeNombres
+
+    }
+        for (Estado x: listaDeItems.get(n).getEstado().getSiguientesEstados()) {
+
+        ComboBoxDeSiguienteItem.addItem(x.getNombre()); //Muestra cada uno de los nombres dentro de listaDeNombres
+
+    }
+        NombreDeEstado.setText(listaDeItems.get(n).getEstado().getNombre());
+        String[] agregar= new String[3];
+        Item iz=  listaDeItems.get(n);
+        agregar[0]=iz.getHistorial().get(modeloTabla.getRowCount()).getEstadoActual().getNombre();
+        agregar[1]=listaDeItems.get(n).getHistorial().get(modeloTabla.getRowCount()).getResponsable().getNombre() ;       
+        agregar[2]=listaDeItems.get(n).getHistorial().get(modeloTabla.getRowCount()).getFecha();
+        modeloTabla.addRow(agregar);
+      }
+    }//GEN-LAST:event_pasarActionPerformed
+
+    private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
+        boolean f=false;
+                Users user= new Users();
+                
+               Programa p= new Programa(f,user,0);
+               p.setVisible(true);
+               dispose();
+    }//GEN-LAST:event_LogOutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -620,14 +876,18 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton BotonAgregarEstado;
     private javax.swing.JButton BotonAgregarEstadosSiguientes;
     private javax.swing.JButton BotonModificarItem;
-    private javax.swing.JLabel ContadorDeEstados;
+    private javax.swing.JComboBox<String> ComboBoxDeResponsables;
+    private javax.swing.JComboBox<String> ComboBoxDeSiguienteItem;
+    private javax.swing.JButton ComenzarItem;
     private javax.swing.JLabel ContadorDeEstadosSiguientes;
     private javax.swing.JLabel ContadorDeLista;
+    private javax.swing.JButton GuardarTodo;
     private javax.swing.JLabel JlabelFondo;
     private javax.swing.JLabel JlabelFondo1;
     private javax.swing.JLabel JlabelFondo3;
     private javax.swing.JLabel JlabelFondo4;
     private javax.swing.JLabel JlabelFondo5;
+    private javax.swing.JLabel JlabelFondo6;
     private javax.swing.JList<String> ListaDeEquipoTabla;
     private DefaultListModel modeloEquipo;
     private javax.swing.JList<String> ListaDeEstadosSiguientesTabla;
@@ -638,9 +898,14 @@ public class Interfaz extends javax.swing.JFrame {
     private DefaultListModel modeloEstado;
     private javax.swing.JList<String> ListaDeItemsTabla;
     private DefaultListModel modelo;
+    private javax.swing.JButton LogOut;
+    private javax.swing.JLabel NombreDeEstado;
     private javax.swing.JLabel NombreDelEstadoSiguiente;
     private javax.swing.JLabel NombreDelItem;
     private javax.swing.JTextField PrioridadItem;
+    private javax.swing.JButton ResponsableActual;
+    private javax.swing.JTable TableDeEstados;
+    private DefaultTableModel modeloTabla;
     private javax.swing.JButton atrasEquipo;
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonBorrarEquipo1;
@@ -648,16 +913,20 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton botonBorrarEstadosSiguientes;
     private javax.swing.JTextField campoTextoEquipo;
     private javax.swing.JTextField campoTextoEstado;
-    private javax.swing.JTextField campoTextoEstadosSiguientes;
     private javax.swing.JTextField campoTextoItem;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -665,7 +934,9 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton pasar;
+    private javax.swing.JLabel primerEstadoDelItem;
     private javax.swing.JButton salir;
+    private javax.swing.JTextField tipoItem;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,12 +5,14 @@
  */
 package seguimientodeitems.Control;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author ezequiel_o
  */
-public class Miembro {
+public class Miembro implements Serializable {
      String nombre;
     
     public void configurarEstado(Item i,int x){

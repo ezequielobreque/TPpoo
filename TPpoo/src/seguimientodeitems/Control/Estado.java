@@ -5,6 +5,7 @@
  */
 package seguimientodeitems.Control;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author ezequiel_o
  */
-public class Estado {
+public class Estado implements Serializable {
 String nombre;
 private List<Estado> siguientesEstados=new ArrayList<Estado>();
 

@@ -5,15 +5,33 @@
  */
 package seguimientodeitems.Control;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author ezequiel_o
  */
-public class Users {
+public class Users implements Serializable {
     String Usuario;
     String Contrasenia;
     LiderProyecto Lider;
+    private List<Item> listaDeItems=  new ArrayList<Item>();
 
+    public Users() {
+         //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Item> getListaDeItems() {
+        return listaDeItems;
+    }
+    public  void addItem(Item i){listaDeItems.add(i);}
+    public  void addItem(int n){listaDeItems.remove(n);}
+    public void setListaDeItems(List<Item> listaDeItems) {
+        this.listaDeItems = listaDeItems;
+    }
+    
     public LiderProyecto getLider() {
         return Lider;
     }
@@ -21,7 +39,7 @@ public class Users {
     public void setLider(LiderProyecto Lider) {
         this.Lider = Lider;
     }
-
+    
     public Users(String Usuario, String Contrasenia, LiderProyecto Lider) {
         this.Usuario = Usuario;
         this.Contrasenia = Contrasenia;

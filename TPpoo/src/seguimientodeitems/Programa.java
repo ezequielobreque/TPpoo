@@ -5,7 +5,9 @@
  */
 package seguimientodeitems;
 
-import java.util.ArrayList;
+import java.io.*;
+import java.io.ObjectOutputStream;
+import java.util.*;
 import static java.util.Collections.list;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,15 +21,59 @@ import seguimientodeitems.Control.Users;
  */
 public class Programa extends javax.swing.JFrame {
     private List<Users> listaMiembros = new ArrayList<Users>();
-   
+   boolean f=false;
     /**
      * Creates new form Programa
+     * @param user
      */
-    public Programa() {
-        initComponents();this.setLocationRelativeTo(null); CrearUsuario.setVisible(true);  jLabel4.setVisible(false);jLabelLegajo.setVisible(false);Legajo.setVisible(false);
+    
+    
+    public Programa(boolean f,Users user,Integer n) {
+        try{
+            
+        ObjectInputStream recuperando_fichero = new ObjectInputStream(new FileInputStream ("archivo.dat"));
+        
+        this.listaMiembros=(List<Users>) recuperando_fichero.readObject();
+        recuperando_fichero.close();
+        for (int i = 0; i < listaMiembros.size(); ++i) {
+            System.out.println(listaMiembros.get(i).getLider().getNombre());
+        }
+        }
+        catch(Exception e){
+        };
+         
+         
+        
+        
+        
+        initComponents();this.setLocationRelativeTo(null); 
+        CrearUsuario.setVisible(true);  
+        jLabel4.setVisible(false);
+        jLabelLegajo.setVisible(false);
+        Legajo.setVisible(false);
     jTextField1.setVisible(false);
     jLabel5.setVisible(false);
         CrearUsuario.setVisible(false);
+        
+        this.f=f;
+        if ( this.f==true){
+        try{
+        ObjectOutputStream escribiendo_fichero= new ObjectOutputStream(new FileOutputStream ("archivo.dat"));
+        listaMiembros.get(n).setListaDeItems(user.getListaDeItems());
+        listaMiembros.get(n).setContrasenia(user.getContrasenia());
+        listaMiembros.get(n).setLider(user.getLider());
+        listaMiembros.get(n).setContrasenia(user.getContrasenia());
+        
+        escribiendo_fichero.writeObject(listaMiembros);
+        escribiendo_fichero.close();
+        
+        dispose();
+        
+         }
+        catch(Exception e){
+        };
+    
+    };
     }
 
     /**
@@ -74,9 +120,11 @@ public class Programa extends javax.swing.JFrame {
         });
         getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 0, 30, -1));
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 51));
         jLabel1.setText("Nombre de usuario");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 90, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 120, 20));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 0));
         jLabel2.setText("Contraseña");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 20));
 
@@ -86,7 +134,7 @@ public class Programa extends javax.swing.JFrame {
                 NombreDeUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(NombreDeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 150, -1));
+        getContentPane().add(NombreDeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 150, -1));
 
         password.setText("jPassw");
         password.addActionListener(new java.awt.event.ActionListener() {
@@ -94,8 +142,9 @@ public class Programa extends javax.swing.JFrame {
                 passwordActionPerformed(evt);
             }
         });
-        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 150, -1));
+        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 150, -1));
 
+        Entrar.setBackground(new java.awt.Color(255, 0, 51));
         Entrar.setText("Entrar");
         Entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +153,7 @@ public class Programa extends javax.swing.JFrame {
         });
         getContentPane().add(Entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 70, -1));
 
+        NuevoUsuario.setBackground(new java.awt.Color(51, 255, 51));
         NuevoUsuario.setText("Nuevo usuario");
         NuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,8 +173,9 @@ public class Programa extends javax.swing.JFrame {
                 LegajoKeyTyped(evt);
             }
         });
-        getContentPane().add(Legajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 150, -1));
+        getContentPane().add(Legajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 150, -1));
 
+        jLabelLegajo.setForeground(new java.awt.Color(255, 255, 0));
         jLabelLegajo.setText("Legajo");
         getContentPane().add(jLabelLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 20));
 
@@ -152,8 +203,9 @@ public class Programa extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 150, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 150, -1));
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 51));
         jLabel5.setText("Nombre");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 100, 20));
 
@@ -182,11 +234,13 @@ public class Programa extends javax.swing.JFrame {
         String pass= new String(password.getPassword());
         String usuario= new String(NombreDeUsuario.getText());
         boolean not=false;
-        for (Users i: listaMiembros) {
-
-        if(i.getContrasenia().equals(pass) && i.getUsuario().equals(usuario)){
+        
+for (int i = 0; i < listaMiembros.size(); ++i) {
             
-            Interfaz prog =new Interfaz(i.getLider());
+        
+        if(listaMiembros.get(i).getContrasenia().equals(pass) && listaMiembros.get(i).getUsuario().equals(usuario)){
+            
+            Interfaz prog =new Interfaz(listaMiembros.get(i),i);
             prog.setVisible(true);
             dispose();
             not=true;
@@ -219,11 +273,15 @@ public class Programa extends javax.swing.JFrame {
 
     private void CrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioActionPerformed
         LiderProyecto nuevo = new LiderProyecto(jTextField1.getText());
-         
-        nuevo.setLegajo(Integer.parseInt(Legajo.getText()));
+         if(Legajo.getText().equals("") ||Legajo.getText().equals("Legajo"))
+         {JOptionPane.showMessageDialog(rootPane, "campo vacio");}
+         else{ nuevo.setLegajo(Integer.parseInt(Legajo.getText())); 
          String pass= new String(password.getPassword());
         Users nuevo2= new Users(NombreDeUsuario.getText(),pass,nuevo);
         listaMiembros.add(nuevo2);
+         
+        
+         
         jTextField1.setText("Nombre Lider");
         Legajo.setText("");
         jTextField1.setVisible(false);
@@ -234,6 +292,17 @@ public class Programa extends javax.swing.JFrame {
         jLabel4.setVisible(false);
         jLabelLegajo.setVisible(false);
         Legajo.setVisible(false);
+         try{
+        ObjectOutputStream escribiendo_fichero= new ObjectOutputStream(new FileOutputStream ("archivo.dat"));
+        escribiendo_fichero.writeObject(listaMiembros);
+        escribiendo_fichero.close();
+        
+        
+         }
+        catch(Exception e){
+        };
+         
+         }
     }//GEN-LAST:event_CrearUsuarioActionPerformed
 
     private void LegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegajoActionPerformed
@@ -277,8 +346,12 @@ public class Programa extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+           
             public void run() {
-                new Programa().setVisible(true);
+                boolean f=false;
+                Users user= new Users();
+                
+                new Programa(f,user,0).setVisible(true);
             }
         });
     }

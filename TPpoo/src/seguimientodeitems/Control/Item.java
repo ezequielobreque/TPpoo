@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package seguimientodeitems.Control;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  */
 
 
-public class Item {
+public class Item implements Serializable {
  Tipo tipo;
  String nombre;
  String prioridad;
@@ -126,6 +127,9 @@ private int indice;
   
     public void setResponsable(Miembro responsable){
         registro.setResponsable(responsable);
+    }
+    public Miembro getResponsable(){
+       return registro.getResponsable();
     }
     
     
