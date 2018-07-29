@@ -14,12 +14,12 @@ import java.util.List;
 
 
 public class Item implements Serializable {
- Tipo tipo;
- String nombre;
- String prioridad;
- Registro registro = new Registro();
- Estado estado;
- Equipo equipo;
+ private Tipo tipo;
+ private String nombre;
+ private String prioridad;
+ private Registro registro = new Registro();
+ private Estado estado;
+ private Equipo equipo;
  private List<Estado> listaDeEstados=new ArrayList<Estado>();
 private List<Registro> historial=new ArrayList<Registro>(); 
 //private List<Estado> bifurcacion=new ArrayList<Estado>();

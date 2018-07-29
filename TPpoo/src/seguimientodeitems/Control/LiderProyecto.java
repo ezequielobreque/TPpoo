@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class LiderProyecto extends Miembro implements Serializable {
 
-    Integer legajo;
+   private Integer legajo;
 
     public LiderProyecto(String nombre) {
         super(nombre);
@@ -33,9 +33,9 @@ public class LiderProyecto extends Miembro implements Serializable {
     public void configurarEstado(Item i,int x){
        //aca deberia selecionar el siguiente estado
        //de esta selecion sale un unico estado
-       i.registro=new Registro();
+        i.setRegistro(new Registro());
        i.selecionDeSiguienteEstado(x);
-       i.setEstadoActual(i.estado);
+       i.setEstadoActual(i.getEstado());
     }
 }
 

@@ -14,8 +14,8 @@ import java.util.List;
  * @author ezequiel_o
  */
 public class Equipo implements Serializable {
-        String especialidad;
-        Miembro lider;
+        private String especialidad;
+        private Miembro lider;
         private List<Miembro> miembros = new ArrayList<Miembro>();
 
     

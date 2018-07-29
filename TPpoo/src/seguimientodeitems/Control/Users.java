@@ -14,9 +14,9 @@ import java.util.List;
  * @author ezequiel_o
  */
 public class Users implements Serializable {
-    String Usuario;
-    String Contrasenia;
-    LiderProyecto Lider;
+   private String Usuario;
+   private String Contrasenia;
+   private LiderProyecto Lider;
     private List<Item> listaDeItems=  new ArrayList<Item>();
 
     public Users() {

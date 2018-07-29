@@ -37,11 +37,15 @@ public class Interfaz extends javax.swing.JFrame {
      * Creates new form Interfaz
      */
     public Interfaz(Users usario,Integer n) {
+        //le paso el usuario y el entero n para saber el numero de su usuario y su usuario completo y poder 
+        //serializarlo despues
         this.n=n;
         this.user=usario;
         this.lider=usario.getLider();
         this.listaDeItems=usario.getListaDeItems();
         initComponents();this.setLocationRelativeTo(null);
+        //desabilito algunas tables para que el sistema ande bien queria hacer que sean incisibles pero no puedo
+        
         jTabbedPane1.setEnabledAt(1,false);
         jTabbedPane1.setEnabledAt(2,false);
         jTabbedPane1.setEnabledAt(3,false);
@@ -87,7 +91,7 @@ public class Interfaz extends javax.swing.JFrame {
         tipoItem = new javax.swing.JTextField();
         JlabelFondo1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        AtrasRegistro = new javax.swing.JButton();
         ComboBoxDeSiguienteItem = new javax.swing.JComboBox<>();
         ComboBoxDeResponsables = new javax.swing.JComboBox<>();
         NombreDeEstado = new javax.swing.JLabel();
@@ -256,15 +260,15 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
-        jButton1.setText("atras");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AtrasRegistro.setBackground(new java.awt.Color(0, 255, 255));
+        AtrasRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
+        AtrasRegistro.setText("atras");
+        AtrasRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AtrasRegistroActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 90, -1));
+        jPanel5.add(AtrasRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 90, -1));
 
         ComboBoxDeSiguienteItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -604,6 +608,8 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonModificarItemActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       //pasar a la lista de estados siguientes atravez de los estados que ya se crearon
+       
         jTabbedPane1.setEnabledAt(3,true);
         jTabbedPane1.setSelectedIndex(3);
         NombreDelEstadoSiguiente.setText(ListaDeEstadosTabla.getSelectedValue()+"   "+
@@ -667,6 +673,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_AtrasEstadosActionPerformed
 
     private void AtrasEstados1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasEstados1ActionPerformed
+        //salgo de los estados y borro la lista 
         jTabbedPane1.setEnabledAt(2,true);    
         jTabbedPane1.setSelectedIndex(2);
           modeloEstadosSiguientes.removeAllElements();
@@ -676,7 +683,8 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_AtrasEstados1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-           jTabbedPane1.setEnabledAt(4,true);    
+        //cargo la tabla de miembros y entro a los miembros del equipo
+        jTabbedPane1.setEnabledAt(4,true);    
         jTabbedPane1.setSelectedIndex(4);
         listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getEquipo().getMiembros().forEach((i) -> {
             modeloEquipo.addElement(i.getNombre()); 
@@ -709,7 +717,7 @@ public class Interfaz extends javax.swing.JFrame {
             modeloEquipo.removeElementAt(n);
             listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getEquipo().borrarMiembro(n);
             ListaDeEquipoTabla.setSelectedIndex(0);
-    }
+    }//para borarr el equupo
        
     }//GEN-LAST:event_botonBorrarEquipo1ActionPerformed
 
@@ -722,7 +730,10 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasEquipoActionPerformed
 
     private void GuardarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarTodoActionPerformed
-      boolean f=true;
+      //enntro a guardar todo en el programa con un numero n que es el numero de user
+      //tambien entro con el bollean para decir que tiene que guardar todo en el programa y serializar
+      //pero que no se vea y que luego se cierre
+        boolean f=true;
       Programa prog=new Programa(f,this.user,this.n);
       prog.setVisible(false);
       
@@ -738,50 +749,56 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void ComenzarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComenzarItemActionPerformed
        int n= ListaDeItemsTabla.getSelectedIndex();
-       jTabbedPane1.setEnabledAt(1,true);//entro al registro
-        jTabbedPane1.setSelectedIndex(1);
-       jTabbedPane1.setEnabledAt(0,false);
-       NombreDeEstado.setText(listaDeItems.get(n).getEstado().getNombre()+"   "+
-                listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre()
-       );
-        for (Miembro i: listaDeItems.get(n).getEquipo().getMiembros()) {
-
-        ComboBoxDeResponsables.addItem(i.getNombre()); //Muestra cada uno de los nombres dentro de listaDeNombres
-
-    }
-        for (Estado i: listaDeItems.get(n).getEstado().getSiguientesEstados()) {
-
-        ComboBoxDeSiguienteItem.addItem(i.getNombre()); //Muestra cada uno de los nombres dentro de listaDeNombres
-
-    
-        }
-        String[] agregar= new String[3];
-        Item iz=  listaDeItems.get(n);
-        for (Registro i: iz.getHistorial()) {
-
-        agregar[0]=i.getEstadoActual().getNombre();
-        agregar[1]=i.getResponsable().getNombre() ;       
-        agregar[2]=i.getFecha();
-        modeloTabla.addRow(agregar);
-
-        }
+        if(n==-1){
+            JOptionPane.showMessageDialog(this,"selecione un item");//por si no pone respoinsable
+        
+} else {
+            jTabbedPane1.setEnabledAt(1,true);//entro al registro
+            jTabbedPane1.setSelectedIndex(1);
+            jTabbedPane1.setEnabledAt(0,false);
+            NombreDeEstado.setText(listaDeItems.get(n).getEstado().getNombre()+"   "+
+                    listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre()
+            );
+            for (Miembro i: listaDeItems.get(n).getEquipo().getMiembros()) {
+                
+                ComboBoxDeResponsables.addItem(i.getNombre()); //Muestra cada uno de los nombres de miembros
+                
+            }
+            for (Estado i: listaDeItems.get(n).getEstado().getSiguientesEstados()) {
+                
+                ComboBoxDeSiguienteItem.addItem(i.getNombre()); //Muestra cada uno de los nombres de los estasdos
+                
+                
+            }//tiene que agregar la tabla conreespospondinte del item
+            String[] agregar= new String[3];
+            Item iz=  listaDeItems.get(n);
+            for (Registro i: iz.getHistorial()) {
+                
+                agregar[0]=i.getEstadoActual().getNombre();
+                agregar[1]=i.getResponsable().getNombre() ;
+                agregar[2]=i.getFecha();
+                modeloTabla.addRow(agregar);
+                
+            }
+       }
+        
     }//GEN-LAST:event_ComenzarItemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       jTabbedPane1.setEnabledAt(0,true);//entro al registro
+    private void AtrasRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasRegistroActionPerformed
+       jTabbedPane1.setEnabledAt(0,true);//entro a los items
         jTabbedPane1.setSelectedIndex(0);
        ComboBoxDeResponsables.removeAllItems();
-       ComboBoxDeSiguienteItem.removeAllItems();
+       ComboBoxDeSiguienteItem.removeAllItems();  //borro todo de la tabla
         jTabbedPane1.setEnabledAt(1,false);
         for (int i = 0; i <modeloTabla.getRowCount() ; ++i) {
     modeloTabla.removeRow(i);
 }
        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_AtrasRegistroActionPerformed
 
     private void ResponsableActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResponsableActualActionPerformed
       int n= ListaDeItemsTabla.getSelectedIndex();
-      
+      //seleciono un responsable
     
       
       int i= ComboBoxDeResponsables.getSelectedIndex();
@@ -792,7 +809,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_ResponsableActualActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int n=ListaDeEstadosTabla.getSelectedIndex();
+        int n=ListaDeEstadosTabla.getSelectedIndex();//seleciono el primer Estado para comenzar con los items despues
         
         Estado e=listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getListaDeEstados().get(n);
         listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).setEstado(e);
@@ -803,7 +820,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void pasarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasarActionPerformed
       int n= ListaDeItemsTabla.getSelectedIndex();
-      
+      //paso al siguiente estado si el responsable del estado actual ya esta asignado
     
       if(listaDeItems.get(n).getResponsable()==null)
       {JOptionPane.showMessageDialog(this,"Sin Responsable Asignado");}
@@ -824,6 +841,7 @@ public class Interfaz extends javax.swing.JFrame {
         ComboBoxDeSiguienteItem.addItem(x.getNombre()); //Muestra cada uno de los nombres dentro de listaDeNombres
 
     }
+        //agrego a la tabla el estado antetior
         NombreDeEstado.setText(listaDeItems.get(n).getEstado().getNombre());
         String[] agregar= new String[3];
         Item iz=  listaDeItems.get(n);
@@ -835,6 +853,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_pasarActionPerformed
 
     private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
+        //salgo hacia el programa de logeo de usuarios
         boolean f=false;
                 Users user= new Users();
                 
@@ -881,6 +900,7 @@ public class Interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasEstados;
     private javax.swing.JButton AtrasEstados1;
+    private javax.swing.JButton AtrasRegistro;
     private javax.swing.JButton BotonAgregar;
     private javax.swing.JButton BotonAgregarEquipo1;
     private javax.swing.JButton BotonAgregarEstado;
@@ -924,7 +944,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField campoTextoEquipo;
     private javax.swing.JTextField campoTextoEstado;
     private javax.swing.JTextField campoTextoItem;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

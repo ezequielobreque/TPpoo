@@ -29,8 +29,10 @@ public class Programa extends javax.swing.JFrame {
     
     
     public Programa(boolean f,Users user,Integer n) {
+    //el bolean se usa mas abajo en el codigo para guardar el usuario con el numero de usuario en la listamiembros
+    
         try{
-            
+    //serializar        
         ObjectInputStream recuperando_fichero = new ObjectInputStream(new FileInputStream ("archivo.dat"));
         
         this.listaMiembros=(List<Users>) recuperando_fichero.readObject();
@@ -54,7 +56,7 @@ public class Programa extends javax.swing.JFrame {
     jTextField1.setVisible(false);
     jLabel5.setVisible(false);
         CrearUsuario.setVisible(false);
-        
+        //aca se usa para guardar los datos
         this.f=f;
         if ( this.f==true){
         try{
@@ -234,7 +236,7 @@ public class Programa extends javax.swing.JFrame {
         String pass= new String(password.getPassword());
         String usuario= new String(NombreDeUsuario.getText());
         boolean not=false;
-        
+        //use un for normal y no el for each porque necesitava el indice i
 for (int i = 0; i < listaMiembros.size(); ++i) {
             
         
@@ -264,7 +266,7 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
         jLabelLegajo.setVisible(true);
         Legajo.setVisible(true);
         
-        
+        //crear nuevo usuario haciendo invisible y visible algunas componentes
     }//GEN-LAST:event_NuevoUsuarioActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -292,7 +294,8 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
         jLabel4.setVisible(false);
         jLabelLegajo.setVisible(false);
         Legajo.setVisible(false);
-         try{
+        //guarda el nuevo usuario en un archivo 
+        try{
         ObjectOutputStream escribiendo_fichero= new ObjectOutputStream(new FileOutputStream ("archivo.dat"));
         escribiendo_fichero.writeObject(listaMiembros);
         escribiendo_fichero.close();
@@ -310,6 +313,7 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
     }//GEN-LAST:event_LegajoActionPerformed
 
     private void LegajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LegajoKeyTyped
+        // por si se ponen numeros en el legajo
         char validar=  evt.getKeyChar();
         if (Character.isLetter(validar)){getToolkit().beep();evt.consume();
         JOptionPane.showMessageDialog(rootPane, "ingresar solo numeros");

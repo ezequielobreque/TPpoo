@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @author ezequiel_o
  */
 public class Miembro implements Serializable {
-     String nombre;
+     private String nombre;
     
     public void configurarEstado(Item i,int x){
         

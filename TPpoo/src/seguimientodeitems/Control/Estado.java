@@ -14,7 +14,7 @@ import java.util.List;
  * @author ezequiel_o
  */
 public class Estado implements Serializable {
-String nombre;
+private String nombre;
 private List<Estado> siguientesEstados=new ArrayList<Estado>();
 
     public List<Estado> getSiguientesEstados() {

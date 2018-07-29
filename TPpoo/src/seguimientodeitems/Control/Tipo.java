@@ -14,7 +14,7 @@ import java.util.List;
  * @author ezequiel_o
  */
 public class Tipo implements Serializable {
-    String nombre;
+     private String nombre;
     private Estado primerEstado;
 
     public Tipo(String nombre ){

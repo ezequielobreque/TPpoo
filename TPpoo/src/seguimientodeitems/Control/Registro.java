@@ -13,9 +13,9 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar; 
 public class Registro implements Serializable {
-     Estado estadoActual;
-     Calendar fecha;
-     Miembro Responsable;           
+    private Estado estadoActual;
+    private Calendar fecha;
+    private Miembro Responsable;           
 
     public Estado getEstadoActual() {
         return estadoActual;
