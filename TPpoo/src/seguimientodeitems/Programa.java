@@ -21,6 +21,7 @@ import seguimientodeitems.Control.Users;
  */
 public class Programa extends javax.swing.JFrame {
     private List<Users> listaMiembros = new ArrayList<Users>();
+    
    boolean f=false;
     /**
      * Creates new form Programa

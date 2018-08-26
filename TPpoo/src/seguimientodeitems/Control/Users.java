@@ -16,20 +16,38 @@ import java.util.List;
 public class Users implements Serializable {
    private String Usuario;
    private String Contrasenia;
+   private boolean alta=false;
+   private boolean admin ;
    private LiderProyecto Lider;
-    private List<Item> listaDeItems=  new ArrayList<Item>();
+    private List<Proyecto> listaDeProyectos=  new ArrayList<Proyecto>();
 
     public Users() {
          //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<Item> getListaDeItems() {
-        return listaDeItems;
+    public boolean isAlta() {
+        return alta;
     }
-    public  void addItem(Item i){listaDeItems.add(i);}
-    public  void addItem(int n){listaDeItems.remove(n);}
-    public void setListaDeItems(List<Item> listaDeItems) {
-        this.listaDeItems = listaDeItems;
+
+    public void setAlta(boolean alta) {
+        this.alta = alta;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public List<Proyecto> getListaDeProyectos() {
+        return listaDeProyectos;
+    }
+    public  void addProyecto(Proyecto i){listaDeProyectos.add(i);}
+    public  void removeProyecto(int n){listaDeProyectos.remove(n);}
+    public void setListaDeProyectos(List<Proyecto> listaDeProyectos) {
+        this.listaDeProyectos = listaDeProyectos;
     }
     
     public LiderProyecto getLider() {

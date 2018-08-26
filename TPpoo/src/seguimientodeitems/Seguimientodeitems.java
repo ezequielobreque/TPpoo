@@ -11,8 +11,11 @@ import seguimientodeitems.Control.LiderProyecto;
 import seguimientodeitems.Control.Item;
 import seguimientodeitems.Control.Estado;
 import seguimientodeitems.Control.Tipo;
+import seguimientodeitems.Control.*;
 import java.util.ArrayList;
 import java.util.List;
+import seguimientodeitems.Control.FactoryTipo;
+import seguimientodeitems.Control.InterfazFactory;
 
 /**
  *
@@ -34,7 +37,10 @@ public class Seguimientodeitems {
         validacion.AddSiguienteEstado(desarrollo);
         validacion.AddSiguienteEstado(aceptado);
         aceptado.AddSiguienteEstado(aceptado);
-        Tipo reportedeBug= new Tipo("Bug");
+        InterfazFactory factory = new FactoryTipo();
+        Tipo reporteBug= factory.crearTipo("bug");
+                
+                
         
         Miembro empleado = new Miembro("juang");
         Miembro empleado2= new Miembro("roberto");
@@ -50,10 +56,15 @@ public class Seguimientodeitems {
         
         Item i=new Item("Bug");
         i.setPrioridad("Alta");
-        i.clasificarItem(reportedeBug);
+        i.setTipo(reporteBug);
         i.setEquipo(e);
         
-        i.setResponsable(e.getMiembros().get(0));
+        i.setEstado(i.getTipo().getListaDeEstados().get(0));
+        System.out.println(i.getTipo().getListaDeEstados().get(3).getNombre());
+         List<Users> listaMiembros = new ArrayList<Users>();
+        
+                
+        /* i.setResponsable(e.getMiembros().get(0));
         i.setEstado(creado);
        i.setEstadoActual(i.getEstado());
        i.getEquipo().getLider().getNombre();
@@ -75,6 +86,7 @@ public class Seguimientodeitems {
         i.siguienteEstado(1);
         
         System.out.println(i.getEstado().getNombre());
-    }
     
+    */
 }
+    }

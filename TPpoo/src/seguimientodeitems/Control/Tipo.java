@@ -13,14 +13,30 @@ import java.util.List;
  *
  * @author ezequiel_o
  */
-public class Tipo implements Serializable {
-     private String nombre;
+public abstract class Tipo implements Serializable {
+    private  String nombre;
     private Estado primerEstado;
-
-    public Tipo(String nombre ){
+    private List<Estado> listaDeEstados=new ArrayList<Estado>();
+     
+    
+    public List<Estado> getListaDeEstados() {
+      return listaDeEstados;
+    }
+    public void agregarListaDeEstados(Estado e){listaDeEstados.add(e);}
+    public void borrarListaDeEstados(int n){listaDeEstados.remove(n);}
+    
+    
+    public void setListaDeEstados(List<Estado> listaDeEstados) {
+        this.listaDeEstados = listaDeEstados;
+    }
+    public Tipo(String nombre,Estado e,List<Estado> listaDeEstados){
         this.nombre=nombre;
-        
+        this.primerEstado=e;
+        this.listaDeEstados=listaDeEstados;
     }   
+    public void SetEstado(Estado primer){
+    this.primerEstado=primer;
+    }
     public String getNombre() {
         return nombre;
     }

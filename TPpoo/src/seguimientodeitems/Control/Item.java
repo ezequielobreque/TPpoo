@@ -20,7 +20,7 @@ public class Item implements Serializable {
  private Registro registro = new Registro();
  private Estado estado;
  private Equipo equipo;
- private List<Estado> listaDeEstados=new ArrayList<Estado>();
+ //private List<Estado> listaDeEstados=new ArrayList<Estado>();
 private List<Registro> historial=new ArrayList<Registro>(); 
 //private List<Estado> bifurcacion=new ArrayList<Estado>();
 
@@ -32,16 +32,7 @@ private List<Registro> historial=new ArrayList<Registro>();
         
     }
 
-    public List<Estado> getListaDeEstados() {
-        return listaDeEstados;
-    }
-    public void agregarListaDeEstados(Estado e){listaDeEstados.add(e);}
-    public void borrarListaDeEstados(int n){listaDeEstados.remove(n);}
-    
-    
-    public void setListaDeEstados(List<Estado> listaDeEstados) {
-        this.listaDeEstados = listaDeEstados;
-    }
+  
     public Item(String nombre) {
         this.nombre = nombre;
     }
