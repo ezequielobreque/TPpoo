@@ -13,11 +13,12 @@ import java.util.List;
  * @author ezequiel_o
  */
 public class New extends Tipo {
-    private static List<Estado> lista= new ArrayList<Estado>();
-    private static String nombre;
+    private  List<Estado> lista= new ArrayList<Estado>();
+    private  String nombre;
     public New(LiderProyecto lider){
-            super(nombre,null,lista);
-    
+            super("nuevo",null,null);
+            super.setListaDeEstados(lista);
+            
             
     }
 

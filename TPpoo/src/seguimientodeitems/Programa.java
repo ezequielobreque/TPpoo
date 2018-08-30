@@ -29,7 +29,7 @@ public class Programa extends javax.swing.JFrame {
      */
     
     
-    public Programa(boolean f,Users user,Integer n) {
+    public Programa(boolean f,Users user,List<Users> listaUsers,Integer n) {
     //el bolean se usa mas abajo en el codigo para guardar el usuario con el numero de usuario en la listamiembros
     
         try{
@@ -88,7 +88,6 @@ public class Programa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
         salir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -103,9 +102,8 @@ public class Programa extends javax.swing.JFrame {
         CrearUsuario = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        LiderMiembro = new javax.swing.JComboBox<>();
         JlabelFondo = new javax.swing.JLabel();
-
-        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(431, 280));
@@ -154,7 +152,7 @@ public class Programa extends javax.swing.JFrame {
                 EntrarActionPerformed(evt);
             }
         });
-        getContentPane().add(Entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 70, -1));
+        getContentPane().add(Entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, -1));
 
         NuevoUsuario.setBackground(new java.awt.Color(51, 255, 51));
         NuevoUsuario.setText("Nuevo usuario");
@@ -163,7 +161,7 @@ public class Programa extends javax.swing.JFrame {
                 NuevoUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(NuevoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
+        getContentPane().add(NuevoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
 
         Legajo.setText("Legajo");
         Legajo.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +196,7 @@ public class Programa extends javax.swing.JFrame {
                 CrearUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(CrearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 70, -1));
+        getContentPane().add(CrearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, -1));
 
         jTextField1.setText("Nombre del Lider");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +209,14 @@ public class Programa extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 51));
         jLabel5.setText("Nombre");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 100, 20));
+
+        LiderMiembro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lider", "Miembro" }));
+        LiderMiembro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LiderMiembroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(LiderMiembro, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 70, -1));
 
         JlabelFondo.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
@@ -322,6 +328,10 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
         }
     }//GEN-LAST:event_LegajoKeyTyped
 
+    private void LiderMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiderMiembroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LiderMiembroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -356,7 +366,7 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
                 boolean f=false;
                 Users user= new Users();
                 
-                new Programa(f,user,0).setVisible(true);
+                new Programa(f,user,null,0).setVisible(true);
             }
         });
     }
@@ -366,12 +376,12 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
     private javax.swing.JButton Entrar;
     private javax.swing.JLabel JlabelFondo;
     private javax.swing.JTextField Legajo;
+    private javax.swing.JComboBox<String> LiderMiembro;
     private javax.swing.JLabel LogInvista;
     private javax.swing.JTextField NombreDeUsuario;
     private javax.swing.JButton NuevoUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelLegajo;

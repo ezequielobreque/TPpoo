@@ -129,7 +129,7 @@ private int indice;
         }
     }
     
-    private void asignarTipo(Tipo tipoItem){        
+    public void asignarTipo(Tipo tipoItem){        
         tipo=tipoItem;        
     }
     

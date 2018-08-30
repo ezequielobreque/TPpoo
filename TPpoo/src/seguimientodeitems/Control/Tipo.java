@@ -40,6 +40,9 @@ public abstract class Tipo implements Serializable {
     public String getNombre() {
         return nombre;
     }
+    public void setNombre(String nombre){
+    this.nombre=nombre;
+    }
 
     public List<Estado> getSecuenciaEstados() {
         return primerEstado.getSiguientesEstados();
