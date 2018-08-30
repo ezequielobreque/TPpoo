@@ -15,7 +15,7 @@ import java.util.List;
 public class New extends Tipo {
     private static List<Estado> lista= new ArrayList<Estado>();
     private static String nombre;
-    public New(){
+    public New(LiderProyecto lider){
             super(nombre,null,lista);
     
             

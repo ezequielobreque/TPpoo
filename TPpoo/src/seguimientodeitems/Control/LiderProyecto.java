@@ -28,16 +28,9 @@ public class LiderProyecto extends Miembro implements Serializable {
         this.legajo = legajo;
     }
     
-    
-    
-    public void configurarEstado(Item i,int x){
-       //aca deberia selecionar el siguiente estado
-       //de esta selecion sale un unico estado
-        i.setRegistro(new Registro());
-       i.selecionDeSiguienteEstado(x);
-       i.setEstadoActual(i.getEstado());
-    }
 }
+    
+  
 
     
 

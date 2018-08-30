@@ -59,6 +59,8 @@ public class Administracion extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         modeloAlta = new DefaultListModel();
         ListaAlta = new javax.swing.JList<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,6 +108,11 @@ public class Administracion extends javax.swing.JFrame {
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 110, -1));
 
         Atras.setText("Atraz");
+        Atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtrasActionPerformed(evt);
+            }
+        });
         getContentPane().add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 110, -1));
 
         ListaAlta.setModel(modeloAlta);
@@ -114,6 +121,12 @@ public class Administracion extends javax.swing.JFrame {
         jScrollPane2.setViewportView(ListaAlta);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 90, 220));
+
+        jLabel1.setText("Usuarios:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 90, -1));
+
+        jLabel2.setText("Activos:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 60, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -143,6 +156,10 @@ public class Administracion extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
      
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
+       
+    }//GEN-LAST:event_AtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +205,8 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JList<String> ListaDeUsuariosTabla;
     private DefaultListModel modelo;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton salir;

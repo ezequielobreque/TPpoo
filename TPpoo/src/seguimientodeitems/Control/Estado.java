@@ -16,7 +16,7 @@ import java.util.List;
 public class Estado implements Serializable {
 private String nombre;
 private List<Estado> siguientesEstados=new ArrayList<Estado>();
-
+    private Miembro responsable ;
     public List<Estado> getSiguientesEstados() {
         return siguientesEstados;
     }
@@ -46,5 +46,16 @@ private List<Estado> siguientesEstados=new ArrayList<Estado>();
     public void asignarResponsable(Item item,Miembro responsable){
         item.setResponsable(responsable);
     }
-}
+
+    public void setResponsable(Miembro responsable) {
+        this.responsable = responsable;
+    }
+
+    
+
+        public Miembro getResponsable() {
+            return responsable;
+        }
+    }
+
     

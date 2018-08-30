@@ -15,7 +15,7 @@ import java.util.GregorianCalendar;
 public class Registro implements Serializable {
     private Estado estadoActual;
     private Calendar fecha;
-    private Miembro Responsable;           
+    private Miembro Responsable=estadoActual.getResponsable();           
 
     public Estado getEstadoActual() {
         return estadoActual;
@@ -40,9 +40,7 @@ public class Registro implements Serializable {
         return Responsable;
     }
 
-    public void setResponsable(Miembro Responsable) {
-        this.Responsable = Responsable;
-    }
+    
     public Registro(){
         this.fecha = new GregorianCalendar();
     }

@@ -62,7 +62,7 @@ public class Programa extends javax.swing.JFrame {
         if ( this.f==true){
         try{
         ObjectOutputStream escribiendo_fichero= new ObjectOutputStream(new FileOutputStream ("archivo.dat"));
-        listaMiembros.get(n).setListaDeItems(user.getListaDeItems());
+        listaMiembros.get(n).setListaDeProyectos(user.getListaDeProyectos());
         listaMiembros.get(n).setContrasenia(user.getContrasenia());
         listaMiembros.get(n).setLider(user.getLider());
         listaMiembros.get(n).setContrasenia(user.getContrasenia());

@@ -20,12 +20,17 @@ public class Bug extends Tipo {
        Estado validacion = new Estado("validacion");
         Estado aceptado = new Estado("Aceptado");
         
-    public Bug() {
+    public Bug(LiderProyecto lider) {
         super("bug",null,null);
         lista.add(creado);
         lista.add(desarrollo);
         lista.add(validacion);
         lista.add(aceptado);
+        creado.setResponsable(lider);
+        desarrollo.setResponsable(lider);
+        validacion.setResponsable(lider);
+        aceptado.setResponsable(lider);
+        
         
         creado.AddSiguienteEstado(desarrollo);
         desarrollo.AddSiguienteEstado(validacion);

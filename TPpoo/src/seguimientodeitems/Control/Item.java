@@ -76,12 +76,10 @@ private int indice;
     }
 
     public Tipo getTipo() {
-        return tipo;
+        return equipo.getTipo();
     }
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
-    }
+    
 
     public  String getNombre() {
         return nombre;
@@ -117,7 +115,7 @@ private int indice;
     
   
     public void setResponsable(Miembro responsable){
-        registro.setResponsable(responsable);
+        estado.setResponsable(responsable);
     }
     public Miembro getResponsable(){
        return registro.getResponsable();
@@ -141,7 +139,7 @@ private int indice;
 
     public void siguienteEstado(int i){
         agregarRegistro(registro);
-        equipo.getLider().configurarEstado(this,i);
+        estado.getResponsable().configurarEstado(this,i);
         }
     public void setEstadoActual(Estado estadoActual){
         registro.setEstadoActual(estadoActual);

@@ -13,18 +13,18 @@ import java.util.List;
  * @author ezequiel_o
  */
 public class Creacion extends Tipo{
-     static List<Estado> lista= new ArrayList<Estado>();
-    static    Estado creado =  new Estado("Creado");
-    static    Estado analisis =  new Estado("analisis");
-    static    Estado testing = new Estado("testing");
-    static    Estado evalu = new Estado("Evaluacion de usuario");
-    static    Estado aceptado = new Estado("Aceptado");
-    static    Estado desarrollo = new Estado("Aceptado");
+      List<Estado> lista= new ArrayList<Estado>();
+       Estado creado =  new Estado("Creado");
+      Estado analisis =  new Estado("analisis");
+       Estado testing = new Estado("testing");
+       Estado evalu = new Estado("Evaluacion de usuario");
+     Estado aceptado = new Estado("Aceptado");
+      Estado desarrollo = new Estado("Aceptado");
 
-    public Creacion() {
+    public Creacion(LiderProyecto lider) {
        
         
-        super("creacion",creado,lista);
+        super("creacion",null,null);
         lista.add(creado);
         lista.add(evalu);
         lista.add(desarrollo);
@@ -32,6 +32,12 @@ public class Creacion extends Tipo{
         lista.add(evalu);
         lista.add(aceptado);
         
+        creado.setResponsable(lider);
+        analisis.setResponsable(lider);
+        testing.setResponsable(lider);
+        evalu.setResponsable(lider);
+        aceptado.setResponsable(lider);
+        desarrollo.setResponsable(lider);
         
         creado.AddSiguienteEstado(analisis);
         analisis.AddSiguienteEstado(desarrollo);

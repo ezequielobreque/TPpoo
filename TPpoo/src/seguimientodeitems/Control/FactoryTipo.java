@@ -17,16 +17,24 @@ public class FactoryTipo implements InterfazFactory {
 
     
     
-    @Override
-    public Tipo crearTipo(String nombre) {
+    public Tipo crearTipo(String nombre,LiderProyecto lider) {
      switch (nombre){
-            case "creacion": return new Creacion();
-            case "bug": return new Bug();
-            case "nuevo": return new New();       
+            case "creacion": return new Creacion(lider);
+            case "bug": return new Bug(lider);
+            case "nuevo": return new New(lider);       
             default: return null;
      }   
     
     }
+
+    @Override
+    public Tipo crearTipo(String i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+    
 
 
 }

@@ -19,6 +19,7 @@ import seguimientodeitems.Control.InterfazFactory;
 import seguimientodeitems.Control.Item;
 import seguimientodeitems.Control.LiderProyecto;
 import seguimientodeitems.Control.Miembro;
+import seguimientodeitems.Control.Proyecto;
 import seguimientodeitems.Control.Registro;
 import seguimientodeitems.Control.Tipo;
 import seguimientodeitems.Control.Users;
@@ -28,7 +29,7 @@ import seguimientodeitems.Control.Users;
  * @author ezequiel_o
  */
 public class Interfaz extends javax.swing.JFrame {
-   private List<Item> listaDeItems=  new ArrayList<Item>();
+   private List<Proyecto> listaDeProyectos=  new ArrayList<Proyecto>();
    private  List<Estado> listaDeEstados=  new ArrayList<Estado>();
    Integer n;
    private LiderProyecto lider; 
@@ -45,7 +46,7 @@ public class Interfaz extends javax.swing.JFrame {
         this.n=n;
         this.user=usario;
         this.lider=usario.getLider();
-        this.listaDeItems=usario.getListaDeItems();
+        this.listaDeProyectos=usario.getListaDeProyectos();
         initComponents();this.setLocationRelativeTo(null);
         //desabilito algunas tables para que el sistema ande bien queria hacer que sean incisibles pero no puedo
         
@@ -57,7 +58,7 @@ public class Interfaz extends javax.swing.JFrame {
         modeloTabla.addColumn("Responsable");
         modeloTabla.addColumn("fecha");
         this.TableDeEstados.setModel(modeloTabla);
-        listaDeItems.forEach((i) -> {
+        listaDeProyectos.forEach((i) -> {
             modelo.addElement(i.getNombre()); 
         });
     }
@@ -85,13 +86,13 @@ public class Interfaz extends javax.swing.JFrame {
         botonBorrar = new javax.swing.JButton();
         campoTextoItem = new javax.swing.JTextField();
         ContadorDeLista = new javax.swing.JLabel();
-        BotonModificarItem = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         GuardarTodo = new javax.swing.JButton();
         ComenzarItem = new javax.swing.JButton();
         LogOut = new javax.swing.JButton();
         ComboBoxDeTipo = new javax.swing.JComboBox<>();
         PrioridadItem = new javax.swing.JComboBox<>();
+        atrasEquipo2 = new javax.swing.JButton();
+        BotonModificarItem1 = new javax.swing.JButton();
         JlabelFondo1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         AtrasRegistro = new javax.swing.JButton();
@@ -138,20 +139,34 @@ public class Interfaz extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         modeloEquipo = new DefaultListModel();
         ListaDeEquipoTabla = new javax.swing.JList<>();
-        campoTextoEquipo = new javax.swing.JTextField();
         BotonAgregarEquipo1 = new javax.swing.JButton();
         botonBorrarEquipo1 = new javax.swing.JButton();
         atrasEquipo = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         JlabelFondo5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         modeloProyecto = new DefaultListModel();
         ListaDeProyectosTabla = new javax.swing.JList<>();
-        campoTextoItem1 = new javax.swing.JTextField();
+        campoTextoProyecto = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        AgregarProyecto = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         JlabelFondo7 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        modeloEquipos = new DefaultListModel();
+        ListaDeEquiposTabla = new javax.swing.JList<>();
+        BotonAgregarEquipo2 = new javax.swing.JButton();
+        botonBorrarEquipo2 = new javax.swing.JButton();
+        atrasEquipo1 = new javax.swing.JButton();
+        NombreEquipo = new javax.swing.JTextField();
+        ComboBoxDeEquipo = new javax.swing.JComboBox<>();
+        BotonModificarItem = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        JlabelFondo8 = new javax.swing.JLabel();
         JlabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -209,24 +224,6 @@ public class Interfaz extends javax.swing.JFrame {
         ContadorDeLista.setText("Cantidad de la lista");
         jPanel1.add(ContadorDeLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 220, -1));
 
-        BotonModificarItem.setBackground(new java.awt.Color(255, 255, 51));
-        BotonModificarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/preferencias-de-compositor-icono-5304-16.png"))); // NOI18N
-        BotonModificarItem.setText("Modificar Item");
-        BotonModificarItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonModificarItemActionPerformed(evt);
-            }
-        });
-        jPanel1.add(BotonModificarItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 130, -1));
-
-        jButton4.setText("Asignar equipo");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 130, -1));
-
         GuardarTodo.setText("guardar todo");
         GuardarTodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,6 +260,26 @@ public class Interfaz extends javax.swing.JFrame {
 
         PrioridadItem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Media", "Baja" }));
         jPanel1.add(PrioridadItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
+
+        atrasEquipo2.setBackground(new java.awt.Color(51, 255, 255));
+        atrasEquipo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
+        atrasEquipo2.setText("atras");
+        atrasEquipo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasEquipo2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(atrasEquipo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 130, -1));
+
+        BotonModificarItem1.setBackground(new java.awt.Color(255, 255, 51));
+        BotonModificarItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/preferencias-de-compositor-icono-5304-16.png"))); // NOI18N
+        BotonModificarItem1.setText("Modificar Item");
+        BotonModificarItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonModificarItem1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BotonModificarItem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 130, -1));
 
         JlabelFondo1.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
@@ -484,14 +501,6 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
 
-        campoTextoEquipo.setText("nombre del Miembro");
-        campoTextoEquipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoEquipoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(campoTextoEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, -1));
-
         BotonAgregarEquipo1.setBackground(new java.awt.Color(0, 255, 0));
         BotonAgregarEquipo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/instalar-el-paquete-icono-5544-16.png"))); // NOI18N
         BotonAgregarEquipo1.setText("Agregar");
@@ -521,6 +530,9 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel2.add(atrasEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 170, -1));
 
+        jLabel4.setText("Miembros");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 220, 30));
+
         JlabelFondo5.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel2.add(JlabelFondo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 290));
@@ -536,13 +548,13 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel6.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 210, 200));
 
-        campoTextoItem1.setText("Nombre del Proyecto");
-        campoTextoItem1.addActionListener(new java.awt.event.ActionListener() {
+        campoTextoProyecto.setText("Nombre del Proyecto");
+        campoTextoProyecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoItem1ActionPerformed(evt);
+                campoTextoProyectoActionPerformed(evt);
             }
         });
-        jPanel6.add(campoTextoItem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 210, -1));
+        jPanel6.add(campoTextoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 210, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel6.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 210, -1));
@@ -555,14 +567,108 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 130, -1));
 
-        jButton1.setText("jButton1");
-        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 130, -1));
+        AgregarProyecto.setText("Agregar");
+        AgregarProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarProyectoActionPerformed(evt);
+            }
+        });
+        jPanel6.add(AgregarProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 130, -1));
+
+        jButton6.setText("Borrar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 130, -1));
+
+        jButton7.setText("Entrar Item");
+        jPanel6.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 130, -1));
 
         JlabelFondo7.setForeground(new java.awt.Color(255, 255, 255));
         JlabelFondo7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel6.add(JlabelFondo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 290));
 
         jTabbedPane1.addTab("Proyecto", jPanel6);
+
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ListaDeEquiposTabla.setModel(modeloEquipos);
+        ListaDeEquiposTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListaDeEquiposTabla.setRequestFocusEnabled(false);
+        jScrollPane8.setViewportView(ListaDeEquiposTabla);
+
+        jPanel7.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 220, -1));
+
+        BotonAgregarEquipo2.setBackground(new java.awt.Color(0, 255, 0));
+        BotonAgregarEquipo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/instalar-el-paquete-icono-5544-16.png"))); // NOI18N
+        BotonAgregarEquipo2.setText("Agregar");
+        BotonAgregarEquipo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAgregarEquipo2ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(BotonAgregarEquipo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 170, -1));
+
+        botonBorrarEquipo2.setBackground(new java.awt.Color(255, 51, 51));
+        botonBorrarEquipo2.setText("Borrar");
+        botonBorrarEquipo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarEquipo2ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(botonBorrarEquipo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 170, -1));
+
+        atrasEquipo1.setBackground(new java.awt.Color(51, 255, 255));
+        atrasEquipo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
+        atrasEquipo1.setText("atras");
+        atrasEquipo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasEquipo1ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(atrasEquipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 170, -1));
+
+        NombreEquipo.setText("Nombre");
+        NombreEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreEquipoActionPerformed(evt);
+            }
+        });
+        jPanel7.add(NombreEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 220, -1));
+
+        ComboBoxDeEquipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "bug", "creacion", "nuevo" }));
+        ComboBoxDeEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxDeEquipoActionPerformed(evt);
+            }
+        });
+        jPanel7.add(ComboBoxDeEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 20));
+
+        BotonModificarItem.setBackground(new java.awt.Color(255, 255, 51));
+        BotonModificarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/preferencias-de-compositor-icono-5304-16.png"))); // NOI18N
+        BotonModificarItem.setText("Modificar Item");
+        BotonModificarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonModificarItemActionPerformed(evt);
+            }
+        });
+        jPanel7.add(BotonModificarItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 170, -1));
+
+        jButton4.setText("Asignar equipo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 170, -1));
+
+        JlabelFondo8.setForeground(new java.awt.Color(255, 255, 255));
+        JlabelFondo8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
+        jPanel7.add(JlabelFondo8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 290));
+
+        jTabbedPane1.addTab("Equipos", jPanel7);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 320));
 
@@ -585,7 +691,7 @@ public class Interfaz extends javax.swing.JFrame {
         if(modelo.getSize()>0)
         {int n =ListaDeItemsTabla.getSelectedIndex();
             modelo.removeElementAt(n);            
-        listaDeItems.remove(n);
+        listaDeProyectos.remove(n);
         
             ListaDeItemsTabla.setSelectedIndex(0);
         }
@@ -611,13 +717,13 @@ public class Interfaz extends javax.swing.JFrame {
         nuevo.setPrioridad((String)PrioridadItem.getSelectedItem());
         
         
-        listaDeItems.add(nuevo);
+        
         
         campoTextoItem.setText("");
         campoTextoItem.requestFocus();
         ListaDeItemsTabla.setSelectedIndex(0);
         ContadorDeLista.setText(String.valueOf(modelo.getSize()));
-        listaDeItems.forEach((i) -> {
+        listaDeProyectos.forEach((i) -> {
             System.out.println (i.getNombre()); //Muestra cada uno de los nombres dentro de listaDeNombres
         });
         
@@ -628,8 +734,10 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void BotonAgregarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarEstadoActionPerformed
         modeloEstado.addElement(campoTextoEstado.getText());
-         Estado nuevo =  new Estado(campoTextoEstado.getText());
-        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().agregarListaDeEstados(nuevo);
+        Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex()); 
+        Estado nuevo =  new Estado(campoTextoEstado.getText());
+      
+         m.getTipo().agregarListaDeEstados(nuevo);
         campoTextoEstado.setText("");
         campoTextoEstado.requestFocus();
         ListaDeEstadosTabla.setSelectedIndex(0);
@@ -638,10 +746,11 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonAgregarEstadoActionPerformed
 
     private void botonBorrarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarEstadoActionPerformed
-      if(modeloEstado.getSize()>0)
+      Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex());
+        if(modeloEstado.getSize()>0)
         {int n =ListaDeEstadosTabla.getSelectedIndex();
             modeloEstado.removeElementAt(n);
-            listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().borrarListaDeEstados(n);
+           m.getTipo().borrarListaDeEstados(n);
             ListaDeEstadosTabla.setSelectedIndex(0);
     }
         primerEstadoDelItem.setText(String.valueOf(modeloEstado.getSize()));
@@ -652,35 +761,20 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTextoEstadoActionPerformed
 
-    private void BotonModificarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarItemActionPerformed
-        jTabbedPane1.setEnabledAt(2,true);
-        jTabbedPane1.setSelectedIndex(2);
-        NombreDelItem.setText(ListaDeItemsTabla.getSelectedValue()+"   "+
-                listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre());
-        jTabbedPane1.setEnabledAt(0,false);
-        if(listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre().equals("bug") || listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre().equals("creacion"))
-        {BotonAgregarEstado.setVisible(false);
-         botonBorrarEstado.setVisible(false);}
-        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().forEach((i) -> {
-            modeloEstado.addElement(i.getNombre()); 
-        });
-        
-    }//GEN-LAST:event_BotonModificarItemActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        //pasar a la lista de estados siguientes atravez de los estados que ya se crearon
        
         jTabbedPane1.setEnabledAt(3,true);
         jTabbedPane1.setSelectedIndex(3);
         NombreDelEstadoSiguiente.setText(ListaDeEstadosTabla.getSelectedValue()+"   "+
-                listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre());
+                listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre());
         jTabbedPane1.setEnabledAt(2,false);
-        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().forEach((i) -> {
+       listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().forEach((i) -> {
             modeloEstadosSiguientes2.addElement(i.getNombre()); 
              
         }
         );
-        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().get(ListaDeEstadosTabla.getSelectedIndex()).getSiguientesEstados().forEach((i) -> {
+        listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().get(ListaDeEstadosTabla.getSelectedIndex()).getSiguientesEstados().forEach((i) -> {
             modeloEstadosSiguientes.addElement(i.getNombre()); 
         });     
         
@@ -692,8 +786,8 @@ public class Interfaz extends javax.swing.JFrame {
     private void BotonAgregarEstadosSiguientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarEstadosSiguientesActionPerformed
         modeloEstadosSiguientes.addElement(modeloEstadosSiguientes2.getElementAt(ListaDeEstadosSiguientesTabla2.getSelectedIndex()));
         int n =ListaDeEstadosTabla.getSelectedIndex();
-        Estado nuevo= listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().get(ListaDeEstadosSiguientesTabla2.getSelectedIndex());
-        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().get(n).AddSiguienteEstado(nuevo);
+        Estado nuevo= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().get(ListaDeEstadosSiguientesTabla2.getSelectedIndex());
+        listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().get(n).AddSiguienteEstado(nuevo);
         //listaDeEstados.get(n).AddSiguienteEstado(nuevo);
         
         ListaDeEstadosSiguientesTabla.setSelectedIndex(0);
@@ -706,7 +800,7 @@ public class Interfaz extends javax.swing.JFrame {
       if(modeloEstadosSiguientes.getSize()>0)
         {int n =ListaDeEstadosSiguientesTabla.getSelectedIndex();
             modeloEstadosSiguientes.removeElementAt(n);
-            listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().get(ListaDeEstadosTabla.getSelectedIndex()).
+            listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().get(ListaDeEstadosTabla.getSelectedIndex()).
                     borrarSiguienteEstado(n);
             ListaDeEstadosSiguientesTabla.setSelectedIndex(0);
     }
@@ -717,7 +811,8 @@ public class Interfaz extends javax.swing.JFrame {
     private void AtrasEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasEstadosActionPerformed
         primerEstadoDelItem.setText("primer Estado");
         int n=ListaDeEstadosTabla.getSelectedIndex();
-        if(listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getEstado()==null && modeloEstado.getSize()>0){
+        Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex());
+        if(m.getEstado()==null && modeloEstado.getSize()>0){
         JOptionPane.showMessageDialog(this,"Selecione el Primer Estado Antes de salir");
         
         }else{jTabbedPane1.setEnabledAt(0,true);    
@@ -725,7 +820,8 @@ public class Interfaz extends javax.swing.JFrame {
             modeloEstado.removeAllElements(); 
         jTabbedPane1.setEnabledAt(2,false);     
         }
-        if(listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre().equals("bug") || listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre().equals("creacion"))
+        
+        if(m.getTipo().getNombre().equals("bug") || m.getTipo().getNombre().equals("creacion"))
         {BotonAgregarEstado.setVisible(true);
          botonBorrarEstado.setVisible(true);}    
             
@@ -745,24 +841,12 @@ public class Interfaz extends javax.swing.JFrame {
         
     }//GEN-LAST:event_AtrasEstados1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //cargo la tabla de miembros y entro a los miembros del equipo
-        jTabbedPane1.setEnabledAt(4,true);    
-        jTabbedPane1.setSelectedIndex(4);
-        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getEquipo().getMiembros().forEach((i) -> {
-            modeloEquipo.addElement(i.getNombre()); 
-        });
-        jTabbedPane1.setEnabledAt(0,false); 
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void campoTextoEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoEquipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoEquipoActionPerformed
-
     private void BotonAgregarEquipo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarEquipo1ActionPerformed
-        modeloEquipo.addElement(campoTextoEquipo.getText());
+        
+        modeloEquipo.addElement(i.getNombre());
         Miembro nuevo =  new Miembro(campoTextoEquipo.getText());
-        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getEquipo().agregarMiembro(nuevo);
+         Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex());
+        m.getEquipo().agregarMiembro(nuevo);
         
         campoTextoEquipo.setText("");
         campoTextoEquipo.requestFocus();
@@ -774,7 +858,8 @@ public class Interfaz extends javax.swing.JFrame {
         if(modeloEquipo.getSize()>0)
         {int n =ListaDeEquipoTabla.getSelectedIndex();
             modeloEquipo.removeElementAt(n);
-            listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getEquipo().borrarMiembro(n);
+             Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex());
+            m.getEquipo().borrarMiembro(n);
             ListaDeEquipoTabla.setSelectedIndex(0);
     }//para borarr el equupo
        
@@ -807,7 +892,8 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBoxDeSiguienteItemActionPerformed
 
     private void ComenzarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComenzarItemActionPerformed
-       int n= ListaDeItemsTabla.getSelectedIndex();
+       Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex());
+        int n= ListaDeItemsTabla.getSelectedIndex();
         if(n==-1){
             JOptionPane.showMessageDialog(this,"selecione un item");//por si no pone respoinsable
         
@@ -815,22 +901,22 @@ public class Interfaz extends javax.swing.JFrame {
             jTabbedPane1.setEnabledAt(1,true);//entro al registro
             jTabbedPane1.setSelectedIndex(1);
             jTabbedPane1.setEnabledAt(0,false);
-            NombreDeEstado.setText(listaDeItems.get(n).getEstado().getNombre()+"   "+
-                    listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getNombre()
+            NombreDeEstado.setText(m.getEstado().getNombre()+"   "+
+                   m.getTipo().getNombre()
             );
-            for (Miembro i: listaDeItems.get(n).getEquipo().getMiembros()) {
+            for (Miembro i: m.getEquipo().getMiembros()) {
                 
                 ComboBoxDeResponsables.addItem(i.getNombre()); //Muestra cada uno de los nombres de miembros
                 
             }
-            for (Estado i: listaDeItems.get(n).getEstado().getSiguientesEstados()) {
+            for (Estado i: m.getEstado().getSiguientesEstados()) {
                 
                 ComboBoxDeSiguienteItem.addItem(i.getNombre()); //Muestra cada uno de los nombres de los estasdos
                 
                 
             }//tiene que agregar la tabla conreespospondinte del item
             String[] agregar= new String[3];
-            Item iz=  listaDeItems.get(n);
+            Item iz=  m;
             for (Registro i: iz.getHistorial()) {
                 
                 agregar[0]=i.getEstadoActual().getNombre();
@@ -858,55 +944,55 @@ public class Interfaz extends javax.swing.JFrame {
     private void ResponsableActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResponsableActualActionPerformed
       int n= ListaDeItemsTabla.getSelectedIndex();
       //seleciono un responsable
-    
+    Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex());
       
       int i= ComboBoxDeResponsables.getSelectedIndex();
       
-      listaDeItems.get(n).setResponsable(listaDeItems.get(n).getEquipo().getMiembros().get(i));//asigno el miembro como responsalbe
-      listaDeItems.get(n).setEstadoActual(listaDeItems.get(n).getEstado());
+      m.setResponsable(m.getEquipo().getMiembros().get(i));//asigno el miembro como responsalbe
+      m.setEstadoActual(m.getEstado());
       
     }//GEN-LAST:event_ResponsableActualActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int n=ListaDeEstadosTabla.getSelectedIndex();//seleciono el primer Estado para comenzar con los items despues
-        
-        Estado e=listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getTipo().getListaDeEstados().get(n);
-        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).setEstado(e);
-        Estado x=listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getEstado();
-        listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).setEstadoActual(x);
-        primerEstadoDelItem.setText( " Primer Estado : "+String.valueOf(listaDeItems.get(ListaDeItemsTabla.getSelectedIndex()).getEstado().getNombre()));
+        Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex());
+        Estado e=m.getTipo().getListaDeEstados().get(n);
+        m.setEstado(e);
+        Estado x=m.getEstado();
+        m.setEstadoActual(x);
+        primerEstadoDelItem.setText(" Primer Estado : "+String.valueOf(m.getEstado().getNombre()));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void pasarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasarActionPerformed
-      int n= ListaDeItemsTabla.getSelectedIndex();
+      
       //paso al siguiente estado si el responsable del estado actual ya esta asignado
-    
-      if(listaDeItems.get(n).getResponsable()==null)
+      Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex());
+      if(m.getResponsable()==null)
       {JOptionPane.showMessageDialog(this,"Sin Responsable Asignado");}
       else{
       int i= ComboBoxDeSiguienteItem.getSelectedIndex();
       
       
-      listaDeItems.get(n).siguienteEstado(i);
+      m.siguienteEstado(i);
       ComboBoxDeResponsables.removeAllItems();
       ComboBoxDeSiguienteItem.removeAllItems();
-      for (Miembro x: listaDeItems.get(n).getEquipo().getMiembros()) {
+      for (Miembro x: m.getEquipo().getMiembros()) {
 
         ComboBoxDeResponsables.addItem(x.getNombre()); //Muestra cada uno de los nombres dentro de listaDeNombres
 
     }
-        for (Estado x: listaDeItems.get(n).getEstado().getSiguientesEstados()) {
+        for (Estado x: m.getEstado().getSiguientesEstados()) {
 
         ComboBoxDeSiguienteItem.addItem(x.getNombre()); //Muestra cada uno de los nombres dentro de listaDeNombres
 
     }
         //agrego a la tabla el estado antetior
-        NombreDeEstado.setText(listaDeItems.get(n).getEstado().getNombre());
+        NombreDeEstado.setText(m.getEstado().getNombre());
         String[] agregar= new String[3];
-        Item iz=  listaDeItems.get(n);
+        Item iz=  m;
         agregar[0]=iz.getHistorial().get(modeloTabla.getRowCount()).getEstadoActual().getNombre();
-        agregar[1]=listaDeItems.get(n).getHistorial().get(modeloTabla.getRowCount()).getResponsable().getNombre() ;       
-        agregar[2]=listaDeItems.get(n).getHistorial().get(modeloTabla.getRowCount()).getFecha();
+        agregar[1]=m.getHistorial().get(modeloTabla.getRowCount()).getResponsable().getNombre() ;       
+        agregar[2]=m.getHistorial().get(modeloTabla.getRowCount()).getFecha();
         modeloTabla.addRow(agregar);
       }
     }//GEN-LAST:event_pasarActionPerformed
@@ -925,13 +1011,137 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBoxDeTipoActionPerformed
 
-    private void campoTextoItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoItem1ActionPerformed
+    private void campoTextoProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoProyectoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoItem1ActionPerformed
+    }//GEN-LAST:event_campoTextoProyectoActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+    jTabbedPane1.setEnabledAt(7,true);//entro a los items
+        jTabbedPane1.setSelectedIndex(7);     
+               
+         Proyecto m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex());
+        m.getListaDeEquipos().forEach((i) -> {
+            modeloEquipos.addElement(i.getEspecialidad()); 
+        });
+        jTabbedPane1.setEnabledAt(6,false); 
+             
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void AgregarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarProyectoActionPerformed
+       modeloProyecto.addElement(campoTextoProyecto.getText());
+        Proyecto nuevo =  new Proyecto(campoTextoProyecto.getText());
+        Equipo equipo= new Equipo();
+        
+   
+        
+       
+        equipo.setLider(lider);
+        //nuevo.setEquipo(equipo);
+      
+        
+        
+        listaDeProyectos.add(nuevo);
+        
+        campoTextoProyecto.setText("");
+        campoTextoProyecto.requestFocus();
+        ListaDeProyectosTabla.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_AgregarProyectoActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void BotonAgregarEquipo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarEquipo2ActionPerformed
+        modeloEquipos.addElement(NombreEquipo.getText());
+        Proyecto m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex());
+        Equipo nuevo =  new Equipo();
+        nuevo.setEspecialidad(NombreEquipo.getText());
+        
+        
+        InterfazFactory factory = new FactoryTipo();
+        Tipo tipo=  factory.crearTipo((String) ComboBoxDeEquipo.getSelectedItem());
+        System.out.println(tipo.getNombre());
+        nuevo.setTipo(tipo);
+        
+        nuevo.setLider(lider);
+        m.AddEquipo(nuevo);
+        
+        NombreEquipo.setText("");
+        NombreEquipo.requestFocus();
+        ListaDeEquiposTabla.setSelectedIndex(0);
+             
+    }//GEN-LAST:event_BotonAgregarEquipo2ActionPerformed
+
+    private void botonBorrarEquipo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarEquipo2ActionPerformed
+         Proyecto m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex());
+        m.borrarEquipo(ListaDeEquiposTabla.getSelectedIndex());
+        modeloEquipos.remove(ListaDeEquiposTabla.getSelectedIndex());
+        
+    }//GEN-LAST:event_botonBorrarEquipo2ActionPerformed
+
+    private void atrasEquipo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasEquipo1ActionPerformed
+  jTabbedPane1.setEnabledAt(6,true);//entro a los items
+        jTabbedPane1.setSelectedIndex(6);
+        //borro todo de la tabla
+          modeloEquipos.removeAllElements(); 
+        jTabbedPane1.setEnabledAt(7,false);
+        
+    }//GEN-LAST:event_atrasEquipo1ActionPerformed
+
+    private void NombreEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreEquipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreEquipoActionPerformed
+
+    private void ComboBoxDeEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxDeEquipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxDeEquipoActionPerformed
+
+    private void BotonModificarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarItemActionPerformed
+    jTabbedPane1.setEnabledAt(2,true);
+        jTabbedPane1.setSelectedIndex(2);
+        Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex());
+        NombreDelItem.setText(ListaDeItemsTabla.getSelectedValue()+"   "+
+                m.getTipo().getNombre());
+        jTabbedPane1.setEnabledAt(0,false);
+        if(m.getTipo().getNombre().equals("bug") || m.getTipo().getNombre().equals("creacion"))
+        {BotonAgregarEstado.setVisible(false);
+         botonBorrarEstado.setVisible(false);}
+        m.getTipo().getListaDeEstados().forEach((i) -> {
+            modeloEstado.addElement(i.getNombre()); 
+        });        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonModificarItemActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+ //cargo la tabla de miembros y entro a los miembros del equipo
+        jTabbedPane1.setEnabledAt(4,true);    
+        jTabbedPane1.setSelectedIndex(4);
+         Equipo m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeEquipos().get(ListaDeEquiposTabla.getSelectedIndex());
+        m.getMiembros().forEach((i) -> {
+            modeloEquipo.addElement(i.getNombre()); 
+        });
+        jTabbedPane1.setEnabledAt(7,false); 
+                                                  // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void atrasEquipo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasEquipo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_atrasEquipo2ActionPerformed
+
+    private void BotonModificarItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarItem1ActionPerformed
+jTabbedPane1.setEnabledAt(2,true);
+        jTabbedPane1.setSelectedIndex(2);
+        Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex());
+        NombreDelItem.setText(ListaDeItemsTabla.getSelectedValue()+"   "+
+                m.getTipo().getNombre());
+        jTabbedPane1.setEnabledAt(0,false);
+        if(m.getTipo().getNombre().equals("bug") || m.getTipo().getNombre().equals("creacion"))
+        {BotonAgregarEstado.setVisible(false);
+         botonBorrarEstado.setVisible(false);}
+        m.getTipo().getListaDeEstados().forEach((i) -> {
+            modeloEstado.addElement(i.getNombre()); 
+        });               // TODO add your handling code here:
+    }//GEN-LAST:event_BotonModificarItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -969,14 +1179,18 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AgregarProyecto;
     private javax.swing.JButton AtrasEstados;
     private javax.swing.JButton AtrasEstados1;
     private javax.swing.JButton AtrasRegistro;
     private javax.swing.JButton BotonAgregar;
     private javax.swing.JButton BotonAgregarEquipo1;
+    private javax.swing.JButton BotonAgregarEquipo2;
     private javax.swing.JButton BotonAgregarEstado;
     private javax.swing.JButton BotonAgregarEstadosSiguientes;
     private javax.swing.JButton BotonModificarItem;
+    private javax.swing.JButton BotonModificarItem1;
+    private javax.swing.JComboBox<String> ComboBoxDeEquipo;
     private javax.swing.JComboBox<String> ComboBoxDeResponsables;
     private javax.swing.JComboBox<String> ComboBoxDeSiguienteItem;
     private javax.swing.JComboBox<String> ComboBoxDeTipo;
@@ -991,8 +1205,11 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel JlabelFondo5;
     private javax.swing.JLabel JlabelFondo6;
     private javax.swing.JLabel JlabelFondo7;
+    private javax.swing.JLabel JlabelFondo8;
     private javax.swing.JList<String> ListaDeEquipoTabla;
     private DefaultListModel modeloEquipo;
+    private javax.swing.JList<String> ListaDeEquiposTabla;
+    private DefaultListModel modeloEquipos;
     private javax.swing.JList<String> ListaDeEstadosSiguientesTabla;
     private DefaultListModel modeloEstadosSiguientes;
     private javax.swing.JList<String> ListaDeEstadosSiguientesTabla2;
@@ -1007,28 +1224,33 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel NombreDeEstado;
     private javax.swing.JLabel NombreDelEstadoSiguiente;
     private javax.swing.JLabel NombreDelItem;
+    private javax.swing.JTextField NombreEquipo;
     private javax.swing.JComboBox<String> PrioridadItem;
     private javax.swing.JButton ResponsableActual;
     private javax.swing.JTable TableDeEstados;
     private DefaultTableModel modeloTabla;
     private javax.swing.JButton atrasEquipo;
+    private javax.swing.JButton atrasEquipo1;
+    private javax.swing.JButton atrasEquipo2;
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonBorrarEquipo1;
+    private javax.swing.JButton botonBorrarEquipo2;
     private javax.swing.JButton botonBorrarEstado;
     private javax.swing.JButton botonBorrarEstadosSiguientes;
-    private javax.swing.JTextField campoTextoEquipo;
     private javax.swing.JTextField campoTextoEstado;
     private javax.swing.JTextField campoTextoItem;
-    private javax.swing.JTextField campoTextoItem1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField campoTextoProyecto;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1036,6 +1258,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1043,6 +1266,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton pasar;
     private javax.swing.JLabel primerEstadoDelItem;

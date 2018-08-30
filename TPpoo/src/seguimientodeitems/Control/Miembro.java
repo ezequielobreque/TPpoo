@@ -15,9 +15,7 @@ import java.io.Serializable;
 public class Miembro implements Serializable {
      private String nombre;
     
-    public void configurarEstado(Item i,int x){
-        
-    }
+    
 
     public Miembro(String nombre) {
         this.nombre = nombre;
@@ -30,5 +28,13 @@ public class Miembro implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-     
+      public void configurarEstado(Item i,int x){
+       //aca deberia selecionar el siguiente estado
+       //de esta selecion sale un unico estado
+        i.setRegistro(new Registro());
+       i.selecionDeSiguienteEstado(x);
+       i.setEstadoActual(i.getEstado());
+    }
 }
+     
+

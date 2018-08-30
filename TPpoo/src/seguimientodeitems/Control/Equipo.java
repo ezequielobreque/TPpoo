@@ -17,7 +17,15 @@ public class Equipo implements Serializable {
         private String especialidad;
         private Miembro lider;
         private List<Miembro> miembros = new ArrayList<Miembro>();
+        private Tipo tipo;
 
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
     
     public String    getEspecialidad() {
         return especialidad;
