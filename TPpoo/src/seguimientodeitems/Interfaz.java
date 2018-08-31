@@ -95,7 +95,6 @@ public class Interfaz extends javax.swing.JFrame {
         PrioridadItem = new javax.swing.JComboBox<>();
         atrasEquipo2 = new javax.swing.JButton();
         BotonModificarItem1 = new javax.swing.JButton();
-        JlabelFondo1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         AtrasRegistro = new javax.swing.JButton();
         ComboBoxDeSiguienteItem = new javax.swing.JComboBox<>();
@@ -155,7 +154,6 @@ public class Interfaz extends javax.swing.JFrame {
         modeloProyecto = new DefaultListModel();
         ListaDeProyectosTabla = new javax.swing.JList<>();
         campoTextoProyecto = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
         AgregarProyecto = new javax.swing.JButton();
         BorrarProyecto = new javax.swing.JButton();
@@ -183,7 +181,6 @@ public class Interfaz extends javax.swing.JFrame {
         salir.setBackground(new java.awt.Color(51, 255, 255));
         salir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         salir.setForeground(new java.awt.Color(102, 255, 255));
-        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/icon (1).png"))); // NOI18N
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
@@ -194,7 +191,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BotonAgregar.setBackground(new java.awt.Color(0, 255, 0));
-        BotonAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/instalar-el-paquete-icono-5544-16.png"))); // NOI18N
         BotonAgregar.setText("Agregar");
         BotonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,7 +207,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 220, -1));
 
         botonBorrar.setBackground(new java.awt.Color(204, 0, 0));
-        botonBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/secuencia-de-comandos-de-borrar-icono-4499-16.png"))); // NOI18N
         botonBorrar.setText("Borrar");
         botonBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +235,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(GuardarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 130, -1));
 
         ComenzarItem.setBackground(new java.awt.Color(255, 0, 255));
-        ComenzarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/ver-el-listado-completo-icono-4252-16.png"))); // NOI18N
         ComenzarItem.setText("Comenzar Item");
         ComenzarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,7 +262,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(PrioridadItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
 
         atrasEquipo2.setBackground(new java.awt.Color(51, 255, 255));
-        atrasEquipo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
         atrasEquipo2.setText("atras");
         atrasEquipo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,7 +271,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(atrasEquipo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 130, -1));
 
         BotonModificarItem1.setBackground(new java.awt.Color(255, 255, 51));
-        BotonModificarItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/preferencias-de-compositor-icono-5304-16.png"))); // NOI18N
         BotonModificarItem1.setText("Modificar Item");
         BotonModificarItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,16 +279,11 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel1.add(BotonModificarItem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 130, -1));
 
-        JlabelFondo1.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
-        jPanel1.add(JlabelFondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 300));
-
         jTabbedPane1.addTab("Items", jPanel1);
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         AtrasRegistro.setBackground(new java.awt.Color(0, 255, 255));
-        AtrasRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
         AtrasRegistro.setText("atras");
         AtrasRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,7 +316,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 140, -1));
 
         ResponsableActual.setBackground(new java.awt.Color(51, 255, 51));
-        ResponsableActual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/anadir-informe-icono-6797-16.png"))); // NOI18N
         ResponsableActual.setText("Selecionar Responsable");
         ResponsableActual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,7 +343,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 480, -1));
 
         JlabelFondo6.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel5.add(JlabelFondo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 300));
 
         jTabbedPane1.addTab("Registro", jPanel5);
@@ -365,7 +350,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BotonAgregarEstado.setBackground(new java.awt.Color(0, 255, 0));
-        BotonAgregarEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/instalar-el-paquete-icono-5544-16.png"))); // NOI18N
         BotonAgregarEstado.setText("Agregar");
         BotonAgregarEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -382,7 +366,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
 
         botonBorrarEstado.setBackground(new java.awt.Color(255, 51, 51));
-        botonBorrarEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/secuencia-de-comandos-de-borrar-icono-4499-16.png"))); // NOI18N
         botonBorrarEstado.setText("Borrar");
         botonBorrarEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -412,7 +395,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel3.add(NombreDelItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 130, -1));
 
         AtrasEstados.setBackground(new java.awt.Color(0, 255, 255));
-        AtrasEstados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
         AtrasEstados.setText("atras");
         AtrasEstados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -431,7 +413,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 160, -1));
 
         JlabelFondo3.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel3.add(JlabelFondo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 290));
 
         jTabbedPane1.addTab("Estados", jPanel3);
@@ -439,7 +420,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BotonAgregarEstadosSiguientes.setBackground(new java.awt.Color(0, 255, 0));
-        BotonAgregarEstadosSiguientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/instalar-el-paquete-icono-5544-16.png"))); // NOI18N
         BotonAgregarEstadosSiguientes.setText("Agregar");
         BotonAgregarEstadosSiguientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -456,7 +436,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 220, -1));
 
         botonBorrarEstadosSiguientes.setBackground(new java.awt.Color(255, 0, 0));
-        botonBorrarEstadosSiguientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/secuencia-de-comandos-de-borrar-icono-4499-16.png"))); // NOI18N
         botonBorrarEstadosSiguientes.setText("Borrar");
         botonBorrarEstadosSiguientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -470,7 +449,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel4.add(NombreDelEstadoSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 130, -1));
 
         AtrasEstados1.setBackground(new java.awt.Color(51, 255, 255));
-        AtrasEstados1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
         AtrasEstados1.setText("atras");
         AtrasEstados1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -493,7 +471,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 210, 20));
 
         JlabelFondo4.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel4.add(JlabelFondo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 300));
 
         jTabbedPane1.addTab("Sigientes", jPanel4);
@@ -508,7 +485,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel2.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, -1));
 
         BotonAgregarEquipo1.setBackground(new java.awt.Color(0, 255, 0));
-        BotonAgregarEquipo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/instalar-el-paquete-icono-5544-16.png"))); // NOI18N
         BotonAgregarEquipo1.setText("Agregar");
         BotonAgregarEquipo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -527,7 +503,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel2.add(botonBorrarEquipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 130, -1));
 
         atrasEquipo.setBackground(new java.awt.Color(51, 255, 255));
-        atrasEquipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
         atrasEquipo.setText("atras");
         atrasEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -550,14 +525,13 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 200, 30));
 
         JlabelFondo5.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel2.add(JlabelFondo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 290));
 
         jTabbedPane1.addTab("equipo", jPanel2);
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ListaDeItemsTabla.setModel(modelo);
+        ListaDeProyectosTabla.setModel(modeloProyecto);
         ListaDeProyectosTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListaDeProyectosTabla.setRequestFocusEnabled(false);
         jScrollPane7.setViewportView(ListaDeProyectosTabla);
@@ -571,9 +545,6 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
         jPanel6.add(campoTextoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 210, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 210, -1));
 
         jButton5.setText("Asignar equipo");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -608,7 +579,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel6.add(EntrarItems, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 130, -1));
 
         JlabelFondo7.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel6.add(JlabelFondo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 290));
 
         jTabbedPane1.addTab("Proyecto", jPanel6);
@@ -623,7 +593,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel7.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 220, -1));
 
         BotonAgregarEquipo2.setBackground(new java.awt.Color(0, 255, 0));
-        BotonAgregarEquipo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/instalar-el-paquete-icono-5544-16.png"))); // NOI18N
         BotonAgregarEquipo2.setText("Agregar");
         BotonAgregarEquipo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -642,7 +611,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel7.add(botonBorrarEquipo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 170, -1));
 
         atrasEquipo1.setBackground(new java.awt.Color(51, 255, 255));
-        atrasEquipo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/volver-flecha-azul-a-la-izquierda-icono-8990-16.png"))); // NOI18N
         atrasEquipo1.setText("atras");
         atrasEquipo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -668,7 +636,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel7.add(ComboBoxDeEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 20));
 
         BotonModificarItem.setBackground(new java.awt.Color(255, 255, 51));
-        BotonModificarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/preferencias-de-compositor-icono-5304-16.png"))); // NOI18N
         BotonModificarItem.setText("Modificar Item");
         BotonModificarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -689,7 +656,6 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel7.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 220, -1));
 
         JlabelFondo8.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         jPanel7.add(JlabelFondo8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 290));
 
         jTabbedPane1.addTab("Equipos", jPanel7);
@@ -697,7 +663,6 @@ public class Interfaz extends javax.swing.JFrame {
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 320));
 
         JlabelFondo.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
         getContentPane().add(JlabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 320));
 
         pack();
@@ -886,11 +851,11 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBorrarEquipo1ActionPerformed
 
     private void atrasEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasEquipoActionPerformed
-        jTabbedPane1.setEnabledAt(7,true);    
+        jTabbedPane1.setEnabledAt(6,true);    
         jTabbedPane1.setSelectedIndex(7);
         modeloEquipo.removeAllElements();
         modeloEquipos2.removeAllElements();
-        jTabbedPane1.setEnabledAt(5,false);     
+        jTabbedPane1.setEnabledAt(4,false);     
                 // TODO add your handling code here:
     }//GEN-LAST:event_atrasEquipoActionPerformed
 
@@ -1020,7 +985,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
         //salgo hacia el programa de logeo de usuarios
-        boolean f=false;
+                boolean f=false;
                 Users user= new Users();
                 
                Programa p= new Programa(f,user,null,0);
@@ -1037,19 +1002,20 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_campoTextoProyectoActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    jTabbedPane1.setEnabledAt(7,true);//entro a los items
-        jTabbedPane1.setSelectedIndex(7);     
+    jTabbedPane1.setEnabledAt(6,true);//entro a los items
+        jTabbedPane1.setSelectedIndex(6);     
                
          Proyecto m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex());
         m.getListaDeEquipos().forEach((i) -> {
             modeloEquipos.addElement(i.getEspecialidad()); 
         });
-        jTabbedPane1.setEnabledAt(6,false); 
+        jTabbedPane1.setEnabledAt(5,false); 
              
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void AgregarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarProyectoActionPerformed
         modeloProyecto.addElement(campoTextoProyecto.getText());
+        
         Proyecto nuevo =  new Proyecto(campoTextoProyecto.getText());        
         
         
@@ -1098,11 +1064,11 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBorrarEquipo2ActionPerformed
 
     private void atrasEquipo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasEquipo1ActionPerformed
-  jTabbedPane1.setEnabledAt(6,true);//entro a los items
-        jTabbedPane1.setSelectedIndex(6);
+  jTabbedPane1.setEnabledAt(5,true);//entro a los items
+        jTabbedPane1.setSelectedIndex(5);
         //borro todo de la tabla
           modeloEquipos.removeAllElements(); 
-        jTabbedPane1.setEnabledAt(7,false);
+        jTabbedPane1.setEnabledAt(6,false);
         
     }//GEN-LAST:event_atrasEquipo1ActionPerformed
 
@@ -1115,12 +1081,12 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBoxDeEquipoActionPerformed
 
     private void BotonModificarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarItemActionPerformed
-    jTabbedPane1.setEnabledAt(2,true);
+        jTabbedPane1.setEnabledAt(2,true);
         jTabbedPane1.setSelectedIndex(2);
         Item m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeItems().get(ListaDeItemsTabla.getSelectedIndex());
         NombreDelItem.setText(ListaDeItemsTabla.getSelectedValue()+"   "+
                 m.getTipo().getNombre());
-        jTabbedPane1.setEnabledAt(0,false);
+        jTabbedPane1.setEnabledAt(6,false);
         if(m.getTipo().getNombre().equals("bug") || m.getTipo().getNombre().equals("creacion"))
         {BotonAgregarEstado.setVisible(false);
          botonBorrarEstado.setVisible(false);}
@@ -1133,17 +1099,23 @@ public class Interfaz extends javax.swing.JFrame {
  //cargo la tabla de miembros y entro a los miembros del equipo
         jTabbedPane1.setEnabledAt(4,true);    
         jTabbedPane1.setSelectedIndex(4);
-         Equipo m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeEquipos().get(ListaDeEquiposTabla.getSelectedIndex());
-        m.getMiembros().forEach((i) -> {
-            modeloEquipo.addElement(i.getNombre()); 
-        });
-        jTabbedPane1.setEnabledAt(7,false); 
+        for (Users i : listaDeUsuarios) {
+           modeloEquipo.add(i.get);
+        }
+        
+        Equipo m= listaDeProyectos.get(ListaDeProyectosTabla.getSelectedIndex()).getListaDeEquipos().get(ListaDeEquiposTabla.getSelectedIndex());
+        
+        if (null!=m.getMiembros()){m.getMiembros().forEach((i) -> {
+            modeloEquipos2.addElement(i.getNombre()); 
+        });}
+        
+        jTabbedPane1.setEnabledAt(6,false); 
                                                   // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void atrasEquipo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasEquipo2ActionPerformed
-jTabbedPane1.setEnabledAt(6,true);    
-        jTabbedPane1.setSelectedIndex(6);
+jTabbedPane1.setEnabledAt(5,true);    
+        jTabbedPane1.setSelectedIndex(5);
         modeloEquipo.removeAllElements(); 
         jTabbedPane1.setEnabledAt(0,false);          
     }//GEN-LAST:event_atrasEquipo2ActionPerformed
@@ -1179,7 +1151,7 @@ jTabbedPane1.setEnabledAt(6,true);
             modelo.addElement(i.getNombre()); 
         });
             
-                jTabbedPane1.setEnabledAt(6,false);        
+                jTabbedPane1.setEnabledAt(5,false);        
     }//GEN-LAST:event_EntrarItemsActionPerformed
 
     /**
@@ -1240,7 +1212,6 @@ jTabbedPane1.setEnabledAt(6,true);
     private javax.swing.JButton EntrarItems;
     private javax.swing.JButton GuardarTodo;
     private javax.swing.JLabel JlabelFondo;
-    private javax.swing.JLabel JlabelFondo1;
     private javax.swing.JLabel JlabelFondo3;
     private javax.swing.JLabel JlabelFondo4;
     private javax.swing.JLabel JlabelFondo5;
@@ -1287,7 +1258,6 @@ jTabbedPane1.setEnabledAt(6,true);
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -17,12 +17,21 @@ public class Users implements Serializable {
    private String Usuario;
    private String Contrasenia;
    private boolean alta=false;
+   private boolean Lider=false;
    private boolean admin ;
-   private LiderProyecto Lider;
+   private Miembro Miembro;
     private List<Proyecto> listaDeProyectos=  new ArrayList<Proyecto>();
 
     public Users() {
          //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean isLider() {
+        return Lider;
+    }
+
+    public void setLider(boolean Lider) {
+        this.Lider = Lider;
     }
 
     public boolean isAlta() {
@@ -50,18 +59,18 @@ public class Users implements Serializable {
         this.listaDeProyectos = listaDeProyectos;
     }
     
-    public LiderProyecto getLider() {
-        return Lider;
+    public Miembro getLider() {
+        return Miembro;
     }
 
-    public void setLider(LiderProyecto Lider) {
-        this.Lider = Lider;
+    public void setLider(Miembro Lider) {
+        this.Miembro = Lider;
     }
     
-    public Users(String Usuario, String Contrasenia, LiderProyecto Lider) {
+    public Users(String Usuario, String Contrasenia, Miembro Lider) {
         this.Usuario = Usuario;
         this.Contrasenia = Contrasenia;
-        this.Lider = Lider;
+        this.Miembro = Lider;
     }
     
     public String getUsuario() {

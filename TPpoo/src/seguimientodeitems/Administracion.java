@@ -8,6 +8,7 @@ package seguimientodeitems;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import seguimientodeitems.Control.Estado;
 import seguimientodeitems.Control.Users;
 
@@ -18,12 +19,14 @@ import seguimientodeitems.Control.Users;
 public class Administracion extends javax.swing.JFrame {
     private List <Users> lista = new ArrayList<Users>();
     private Users usuario;
+    private int o;
     /**
      * Creates new form Administracion
      */
-    public Administracion(Users user,List <Users> lista) {
+    public Administracion(Users user,List <Users> lista,int x) {
         this.lista=lista;
         this.usuario=user;
+        this.o=x;
         for (Users i : this.lista) {
              modelo.addElement(i.getUsuario());
         }
@@ -54,13 +57,15 @@ public class Administracion extends javax.swing.JFrame {
         ListaDeUsuariosTabla = new javax.swing.JList<>();
         Confirmar = new javax.swing.JButton();
         Borrar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        entrar = new javax.swing.JButton();
         Atras = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         modeloAlta = new DefaultListModel();
         ListaAlta = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        HacerAdmin = new javax.swing.JButton();
+        Guardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -89,7 +94,7 @@ public class Administracion extends javax.swing.JFrame {
                 ConfirmarActionPerformed(evt);
             }
         });
-        getContentPane().add(Confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 110, -1));
+        getContentPane().add(Confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 110, -1));
 
         Borrar.setText("borrar");
         Borrar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,17 +102,17 @@ public class Administracion extends javax.swing.JFrame {
                 BorrarActionPerformed(evt);
             }
         });
-        getContentPane().add(Borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 110, -1));
+        getContentPane().add(Borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 110, -1));
 
-        jButton3.setText("entrar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        entrar.setText("entrar");
+        entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                entrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 110, -1));
+        getContentPane().add(entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 110, -1));
 
-        Atras.setText("Atraz");
+        Atras.setText("Atras");
         Atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AtrasActionPerformed(evt);
@@ -128,6 +133,22 @@ public class Administracion extends javax.swing.JFrame {
         jLabel2.setText("Activos:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 60, -1));
 
+        HacerAdmin.setText("Hacer Admin");
+        HacerAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HacerAdminActionPerformed(evt);
+            }
+        });
+        getContentPane().add(HacerAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 110, -1));
+
+        Guardar.setText("Guardar");
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 110, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,7 +157,7 @@ public class Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
-        // TODO add your handling code here:
+            lista.remove(ListaDeUsuariosTabla.getSelectedIndex());
     }//GEN-LAST:event_BorrarActionPerformed
 
     private void ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarActionPerformed
@@ -144,7 +165,7 @@ public class Administracion extends javax.swing.JFrame {
         
          
         lista.get(ListaDeUsuariosTabla.getSelectedIndex()).setAlta(true);
-        modelo.removeAllElements();
+        modeloAlta.removeAllElements();
         for (Users i : this.lista) {
              modeloAlta.addElement(i.isAlta());
         }
@@ -153,13 +174,42 @@ public class Administracion extends javax.swing.JFrame {
         ListaDeUsuariosTabla.setSelectedIndex(-1);
     }//GEN-LAST:event_ConfirmarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-     
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarActionPerformed
+  List<Users> lista2= new ArrayList<Users>();
+        for (Users i : lista) {
+            if (i.isLider()==false){lista2.add(i);}
+            
+        }
+         
+        
+        Interfaz prog =new Interfaz(usuario,lista2,o);
+            prog.setVisible(true);
+            dispose();
+                 
+    }//GEN-LAST:event_entrarActionPerformed
 
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
-       
+     
+       boolean f=false;
+                Users user= new Users();
+                
+               Programa p= new Programa(f,user,null,0);
+               p.setVisible(true);
+               dispose();
     }//GEN-LAST:event_AtrasActionPerformed
+
+    private void HacerAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HacerAdminActionPerformed
+        lista.get(ListaDeUsuariosTabla.getSelectedIndex()).setAdmin(true);
+        JOptionPane.showMessageDialog(this,"Usuario admin");
+        ListaAlta.setSelectedIndex(-1);
+        ListaDeUsuariosTabla.setSelectedIndex(-1);
+    }//GEN-LAST:event_HacerAdminActionPerformed
+
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+ boolean f=true;
+      Programa prog=new Programa(f,usuario,lista,o);
+      prog.setVisible(false);        
+    }//GEN-LAST:event_GuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,11 +250,13 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JButton Atras;
     private javax.swing.JButton Borrar;
     private javax.swing.JButton Confirmar;
+    private javax.swing.JButton Guardar;
+    private javax.swing.JButton HacerAdmin;
     private javax.swing.JList<String> ListaAlta;
     private DefaultListModel modeloAlta;
     private javax.swing.JList<String> ListaDeUsuariosTabla;
     private DefaultListModel modelo;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton entrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

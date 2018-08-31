@@ -103,9 +103,9 @@ public class Programa extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         LiderMiembro = new javax.swing.JComboBox<>();
-        JlabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(431, 280));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -113,13 +113,12 @@ public class Programa extends javax.swing.JFrame {
         salir.setBackground(new java.awt.Color(51, 255, 255));
         salir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         salir.setForeground(new java.awt.Color(102, 255, 255));
-        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/icon (1).png"))); // NOI18N
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
             }
         });
-        getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 0, 30, -1));
+        getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 0, 30, 20));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 51));
         jLabel1.setText("Nombre de usuario");
@@ -218,10 +217,6 @@ public class Programa extends javax.swing.JFrame {
         });
         getContentPane().add(LiderMiembro, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 70, -1));
 
-        JlabelFondo.setForeground(new java.awt.Color(255, 255, 255));
-        JlabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondo-celeste-oscuro-6269.jpg"))); // NOI18N
-        getContentPane().add(JlabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 290));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -248,11 +243,17 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
             
         
         if(listaMiembros.get(i).getContrasenia().equals(pass) && listaMiembros.get(i).getUsuario().equals(usuario)){
-            
-            Interfaz prog =new Interfaz(listaMiembros.get(i),i);
+            if(listaMiembros.get(i).isAdmin()==false){
+            Interfaz prog =new Interfaz(listaMiembros.get(i),listaMiembros,i);
             prog.setVisible(true);
             dispose();
             not=true;
+            }else{Administracion prog =new Administracion(listaMiembros.get(i),listaMiembros,i);
+            prog.setVisible(true);
+            dispose();
+            not=true;}
+            
+            
         } } 
         if (not==(false))
         {JOptionPane.showMessageDialog(this,"Contraseña o usuario incorrecto");
@@ -281,17 +282,17 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void CrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioActionPerformed
-        LiderProyecto nuevo = new LiderProyecto(jTextField1.getText());
+        if (((String) LiderMiembro.getSelectedItem()).equals("lider")){
+        LiderProyecto L = new LiderProyecto(jTextField1.getText());
          if(Legajo.getText().equals("") ||Legajo.getText().equals("Legajo"))
          {JOptionPane.showMessageDialog(rootPane, "campo vacio");}
-         else{ nuevo.setLegajo(Integer.parseInt(Legajo.getText())); 
+         else{
+             L.setLegajo(Integer.parseInt(Legajo.getText())); 
          String pass= new String(password.getPassword());
-        Users nuevo2= new Users(NombreDeUsuario.getText(),pass,nuevo);
+        Users nuevo2= new Users(NombreDeUsuario.getText(),pass,L);
+       nuevo2.setLider(true);
         listaMiembros.add(nuevo2);
-         
-        
-         
-        jTextField1.setText("Nombre Lider");
+          jTextField1.setText("Nombre Lider");
         Legajo.setText("");
         jTextField1.setVisible(false);
         CrearUsuario.setVisible(false);
@@ -310,9 +311,43 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
         
          }
         catch(Exception e){
-        };
-         
+        };  
+            
+        }}else{
+        
+        Miembro nuevo = new Miembro(jTextField1.getText());
+        String pass= new String(password.getPassword());
+        Users nuevo2= new Users(NombreDeUsuario.getText(),pass,nuevo);
+        listaMiembros.add(nuevo2);
+        listaMiembros.add(nuevo2);
+          jTextField1.setText("Nombre Lider");
+        Legajo.setText("");
+        jTextField1.setVisible(false);
+        CrearUsuario.setVisible(false);
+        jLabel5.setVisible(false);
+        Entrar.setVisible(true);
+        LogInvista.setVisible(true);
+        jLabel4.setVisible(false);
+        jLabelLegajo.setVisible(false);
+        Legajo.setVisible(false);
+        //guarda el nuevo usuario en un archivo 
+        try{
+        ObjectOutputStream escribiendo_fichero= new ObjectOutputStream(new FileOutputStream ("archivo.dat"));
+        escribiendo_fichero.writeObject(listaMiembros);
+        escribiendo_fichero.close();
+        
+        
          }
+        catch(Exception e){
+        }; 
+        }
+        
+         
+        
+         
+        
+         
+         
     }//GEN-LAST:event_CrearUsuarioActionPerformed
 
     private void LegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegajoActionPerformed
@@ -374,7 +409,6 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CrearUsuario;
     private javax.swing.JButton Entrar;
-    private javax.swing.JLabel JlabelFondo;
     private javax.swing.JTextField Legajo;
     private javax.swing.JComboBox<String> LiderMiembro;
     private javax.swing.JLabel LogInvista;

@@ -14,11 +14,14 @@ public class Admin extends Users{
     private static String contrasenia="admin";
     private static boolean admin= true ;
     private static boolean alta=true;
+    private static boolean lider=true;
     public Admin() {
         super.setAdmin(admin);
         super.setAlta(alta);
         super.setUsuario(nombre);
         super.setContrasenia(contrasenia);
+        super.setLider(lider);
+        
     }
 
     
