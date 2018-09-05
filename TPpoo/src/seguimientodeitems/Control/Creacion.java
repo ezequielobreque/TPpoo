@@ -5,6 +5,7 @@
  */
 package seguimientodeitems.Control;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author ezequiel_o
  */
-public class Creacion extends Tipo{
+public class Creacion extends Tipo implements Serializable{
       List<Estado> lista= new ArrayList<Estado>();
        Estado creado =  new Estado("Creado");
       Estado analisis =  new Estado("analisis");
@@ -21,7 +22,7 @@ public class Creacion extends Tipo{
      Estado aceptado = new Estado("Aceptado");
       Estado desarrollo = new Estado("Aceptado");
 
-    public Creacion(LiderProyecto lider) {
+    public Creacion(Miembro lider) {
        
         
         super("creacion",null,null);
@@ -47,7 +48,8 @@ public class Creacion extends Tipo{
         evalu.AddSiguienteEstado(desarrollo);
         evalu.AddSiguienteEstado(aceptado);
         aceptado.AddSiguienteEstado(aceptado);
-        
+         super.SetEstado(creado);
+        super.setListaDeEstados(lista);
         
                 }
 

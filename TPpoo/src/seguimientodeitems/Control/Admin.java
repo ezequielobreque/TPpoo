@@ -5,16 +5,20 @@
  */
 package seguimientodeitems.Control;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ezequiel_o
  */
-public class Admin extends Users{
-    private static String nombre="admin";
-    private static String contrasenia="admin";
-    private static boolean admin= true ;
-    private static boolean alta=true;
-    private static boolean lider=true;
+public class Admin extends Users implements Serializable{
+    private  String nombre="admin";
+    private  String contrasenia="admin";
+    private boolean admin= true ;
+    private  boolean alta=true;
+    private  boolean lider=true;
+    
+    
     public Admin() {
         super.setAdmin(admin);
         super.setAlta(alta);

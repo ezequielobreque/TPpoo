@@ -5,6 +5,7 @@
  */
 package seguimientodeitems.Control;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.List;
@@ -13,14 +14,14 @@ import java.util.List;
  *
  * @author ezequiel_o
  */
-public class Bug extends Tipo {
+public class Bug extends Tipo implements Serializable {
      List<Estado> lista= new ArrayList<Estado>();
         Estado creado =  new Estado("Creado");
        Estado desarrollo =  new Estado("desarrollo");
        Estado validacion = new Estado("validacion");
         Estado aceptado = new Estado("Aceptado");
         
-    public Bug(LiderProyecto lider) {
+    public Bug(Miembro lider) {
         super("bug",null,null);
         lista.add(creado);
         lista.add(desarrollo);

@@ -47,4 +47,8 @@ public abstract class Tipo implements Serializable {
     public List<Estado> getSecuenciaEstados() {
         return primerEstado.getSiguientesEstados();
     }
+
+    public Estado getPrimerEstado() {
+        return primerEstado;
+    }
 }

@@ -6,6 +6,9 @@
 package seguimientodeitems.Control;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.List;
 
 /**
  *
@@ -14,7 +17,7 @@ import java.io.Serializable;
 public class LiderProyecto extends Miembro implements Serializable {
 
    private Integer legajo;
-
+  
     public LiderProyecto(String nombre) {
         super(nombre);
     }
@@ -24,6 +27,10 @@ public class LiderProyecto extends Miembro implements Serializable {
         return legajo;
     }
 
+   
+
+ 
+ 
     public void setLegajo(Integer legajo) {
         this.legajo = legajo;
     }

@@ -114,8 +114,9 @@ private int indice;
     }
     
   
-    public void setResponsable(Miembro responsable){
+     public void setResponsable(Miembro responsable){
         estado.setResponsable(responsable);
+         registro.setResponsable(responsable);
     }
     public Miembro getResponsable(){
        return registro.getResponsable();
@@ -136,7 +137,7 @@ private int indice;
     public void agregarRegistro(Registro r){
         historial.add(r);
     }
-
+    
     public void siguienteEstado(int i){
         agregarRegistro(registro);
         estado.getResponsable().configurarEstado(this,i);

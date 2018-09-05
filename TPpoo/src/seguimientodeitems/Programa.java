@@ -11,6 +11,7 @@ import java.util.*;
 import static java.util.Collections.list;
 import java.util.List;
 import javax.swing.JOptionPane;
+import seguimientodeitems.Control.Admin;
 import seguimientodeitems.Control.LiderProyecto;
 import seguimientodeitems.Control.Miembro;
 import seguimientodeitems.Control.Users;
@@ -20,6 +21,7 @@ import seguimientodeitems.Control.Users;
  * @author ezequiel_o
  */
 public class Programa extends javax.swing.JFrame {
+    private Admin admin; 
     private List<Users> listaMiembros = new ArrayList<Users>();
     
    boolean f=false;
@@ -30,6 +32,8 @@ public class Programa extends javax.swing.JFrame {
     
     
     public Programa(boolean f,Users user,List<Users> listaUsers,Integer n) {
+        
+        
     //el bolean se usa mas abajo en el codigo para guardar el usuario con el numero de usuario en la listamiembros
     
         try{
@@ -49,6 +53,7 @@ public class Programa extends javax.swing.JFrame {
         
         
         
+        
         initComponents();this.setLocationRelativeTo(null); 
         CrearUsuario.setVisible(true);  
         jLabel4.setVisible(false);
@@ -57,15 +62,16 @@ public class Programa extends javax.swing.JFrame {
     jTextField1.setVisible(false);
     jLabel5.setVisible(false);
         CrearUsuario.setVisible(false);
+       
         //aca se usa para guardar los datos
         this.f=f;
         if ( this.f==true){
         try{
         ObjectOutputStream escribiendo_fichero= new ObjectOutputStream(new FileOutputStream ("archivo.dat"));
-        listaMiembros.get(n).setListaDeProyectos(user.getListaDeProyectos());
-        listaMiembros.get(n).setContrasenia(user.getContrasenia());
-        listaMiembros.get(n).setLider(user.getLider());
-        listaMiembros.get(n).setContrasenia(user.getContrasenia());
+            
+        listaMiembros=listaUsers;
+            System.out.println(listaMiembros.size());
+        
         
         escribiendo_fichero.writeObject(listaMiembros);
         escribiendo_fichero.close();
@@ -77,6 +83,7 @@ public class Programa extends javax.swing.JFrame {
         };
     
     };
+    
     }
 
     /**
@@ -197,7 +204,7 @@ public class Programa extends javax.swing.JFrame {
         });
         getContentPane().add(CrearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, -1));
 
-        jTextField1.setText("Nombre del Lider");
+        jTextField1.setText("Nombre ");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -243,7 +250,10 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
             
         
         if(listaMiembros.get(i).getContrasenia().equals(pass) && listaMiembros.get(i).getUsuario().equals(usuario)){
+           if(listaMiembros.get(i).isAlta()==true){
             if(listaMiembros.get(i).isAdmin()==false){
+               
+                
             Interfaz prog =new Interfaz(listaMiembros.get(i),listaMiembros,i);
             prog.setVisible(true);
             dispose();
@@ -253,8 +263,8 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
             dispose();
             not=true;}
             
-            
-        } } 
+           
+        }else {JOptionPane.showMessageDialog(this,"Usuario no dado de alta");}}} 
         if (not==(false))
         {JOptionPane.showMessageDialog(this,"Contraseña o usuario incorrecto");
         
@@ -282,7 +292,21 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void CrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioActionPerformed
-        if (((String) LiderMiembro.getSelectedItem()).equals("lider")){
+        boolean f=true; 
+        for (Users i : listaMiembros) {
+     if(i.getUsuario().equals(NombreDeUsuario.getText()))
+        {f=false;}
+        }
+ 
+            
+            
+            
+         
+        if(f==false)
+        {JOptionPane.showMessageDialog(rootPane, "usuario ya existe");}
+        
+        else{
+        if (((String) LiderMiembro.getSelectedItem())=="Lider"){
         LiderProyecto L = new LiderProyecto(jTextField1.getText());
          if(Legajo.getText().equals("") ||Legajo.getText().equals("Legajo"))
          {JOptionPane.showMessageDialog(rootPane, "campo vacio");}
@@ -291,8 +315,11 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
          String pass= new String(password.getPassword());
         Users nuevo2= new Users(NombreDeUsuario.getText(),pass,L);
        nuevo2.setLider(true);
+       
+      
         listaMiembros.add(nuevo2);
-          jTextField1.setText("Nombre Lider");
+        
+          jTextField1.setText("Nombre");
         Legajo.setText("");
         jTextField1.setVisible(false);
         CrearUsuario.setVisible(false);
@@ -318,9 +345,9 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
         Miembro nuevo = new Miembro(jTextField1.getText());
         String pass= new String(password.getPassword());
         Users nuevo2= new Users(NombreDeUsuario.getText(),pass,nuevo);
+        
         listaMiembros.add(nuevo2);
-        listaMiembros.add(nuevo2);
-          jTextField1.setText("Nombre Lider");
+          jTextField1.setText("Nombre");
         Legajo.setText("");
         jTextField1.setVisible(false);
         CrearUsuario.setVisible(false);
@@ -341,10 +368,10 @@ for (int i = 0; i < listaMiembros.size(); ++i) {
         catch(Exception e){
         }; 
         }
-        
+                    
          
         
-         
+        }
         
          
          

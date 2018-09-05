@@ -11,6 +11,6 @@ import java.util.List;
  *
  * @author ezequiel_o
  */
-public interface InterfazFactory {
-    public Tipo crearTipo(String i);
+public interface InterfazFactory  {
+    public Tipo crearTipo(String i,Miembro miembro);
 }

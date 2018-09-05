@@ -5,6 +5,7 @@
  */
 package seguimientodeitems.Control;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author ezequiel_o
  */
-public class Proyecto {
+public class Proyecto implements Serializable{
     private List<Item> listaDeItems=  new ArrayList<Item>();
     private String nombre;
     private List<Equipo> listaDeEquipos=  new ArrayList<Equipo>();

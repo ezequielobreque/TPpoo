@@ -27,15 +27,19 @@ public class Administracion extends javax.swing.JFrame {
         this.lista=lista;
         this.usuario=user;
         this.o=x;
+        initComponents();this.setLocationRelativeTo(null); 
         for (Users i : this.lista) {
+           
              modelo.addElement(i.getUsuario());
         }
         
         for (Users i : this.lista) {
+            
+             
              modeloAlta.addElement(i.isAlta());
         }
         
-        initComponents();this.setLocationRelativeTo(null); 
+        
     }
 
     private Administracion() {
@@ -68,18 +72,18 @@ public class Administracion extends javax.swing.JFrame {
         Guardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         salir.setBackground(new java.awt.Color(51, 255, 255));
         salir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         salir.setForeground(new java.awt.Color(102, 255, 255));
-        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/icon (1).png"))); // NOI18N
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
             }
         });
-        getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 30, -1));
+        getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 30, 20));
 
         ListaDeUsuariosTabla.setModel(modelo);
         ListaDeUsuariosTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -158,6 +162,19 @@ public class Administracion extends javax.swing.JFrame {
 
     private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
             lista.remove(ListaDeUsuariosTabla.getSelectedIndex());
+            modelo.removeAllElements();
+            
+        for (Users i : this.lista) {
+            
+            
+             modelo.addElement(i.getUsuario());
+        }
+            modeloAlta.removeAllElements();
+        for (Users i : this.lista) {
+            
+             
+             modeloAlta.addElement(i.isAlta());
+        }
     }//GEN-LAST:event_BorrarActionPerformed
 
     private void ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarActionPerformed
@@ -167,6 +184,8 @@ public class Administracion extends javax.swing.JFrame {
         lista.get(ListaDeUsuariosTabla.getSelectedIndex()).setAlta(true);
         modeloAlta.removeAllElements();
         for (Users i : this.lista) {
+            
+             
              modeloAlta.addElement(i.isAlta());
         }
         
@@ -175,14 +194,11 @@ public class Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_ConfirmarActionPerformed
 
     private void entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarActionPerformed
-  List<Users> lista2= new ArrayList<Users>();
-        for (Users i : lista) {
-            if (i.isLider()==false){lista2.add(i);}
-            
-        }
          
         
-        Interfaz prog =new Interfaz(usuario,lista2,o);
+         
+        
+        Interfaz prog =new Interfaz(usuario,lista,o);
             prog.setVisible(true);
             dispose();
                  
@@ -206,7 +222,7 @@ public class Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_HacerAdminActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
- boolean f=true;
+      boolean f=true;
       Programa prog=new Programa(f,usuario,lista,o);
       prog.setVisible(false);        
     }//GEN-LAST:event_GuardarActionPerformed

@@ -21,7 +21,7 @@ import seguimientodeitems.Control.InterfazFactory;
  *
  * @author ezequiel_o
  */
-public class Seguimientodeitems {
+public class Pruebas {
 
     /**
      * @param args the command line arguments
@@ -38,7 +38,7 @@ public class Seguimientodeitems {
         validacion.AddSiguienteEstado(aceptado);
         aceptado.AddSiguienteEstado(aceptado);
         InterfazFactory factory = new FactoryTipo();
-        Tipo reporteBug= factory.crearTipo("bug");
+        
                 
                 
         
@@ -56,7 +56,7 @@ public class Seguimientodeitems {
         
         Item i=new Item("Bug");
         i.setPrioridad("Alta");
-        i.setTipo(reporteBug);
+        
         i.setEquipo(e);
         
         i.setEstado(i.getTipo().getListaDeEstados().get(0));

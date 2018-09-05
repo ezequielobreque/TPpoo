@@ -5,6 +5,7 @@
  */
 package seguimientodeitems.Control;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +13,10 @@ import java.util.List;
  *
  * @author ezequiel_o
  */
-public class New extends Tipo {
+public class New extends Tipo implements Serializable {
     private  List<Estado> lista= new ArrayList<Estado>();
     private  String nombre;
-    public New(LiderProyecto lider){
+    public New(Miembro lider){
             super("nuevo",null,null);
             super.setListaDeEstados(lista);
             

@@ -18,7 +18,7 @@ public class Users implements Serializable {
    private String Contrasenia;
    private boolean alta=false;
    private boolean Lider=false;
-   private boolean admin ;
+   private boolean admin =false;
    private Miembro Miembro;
     private List<Proyecto> listaDeProyectos=  new ArrayList<Proyecto>();
 
